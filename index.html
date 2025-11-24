@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sumanshu Sohal – Cybersecurity & Research</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<header class="hero">
+    <div class="hero-inner">
+        <div class="hero-text reveal">
+            <div class="top-bar">
+                <span class="tag">Open to New Roles</span>
+                <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+            </div>
+
+            <h1>Sumanshu Sohal</h1>
+            <p class="subtitle">
+                SOC Analyst · Detection Engineering · Incident Response · Cybersecurity Research
+            </p>
+            <p class="summary">
+                FireEye SOC Analyst at Trellix with hands-on experience in SIEM tuning, threat hunting,
+                ATT&amp;CK-based detection engineering, and vulnerability management, plus research on
+                SOC maturity and SIEM false-positive reduction.
+            </p>
+
+            <div class="hero-actions">
+                <a class="btn primary" href="resume/Sumanshu_Sohal_resume.pdf" target="_blank">
+                    📄 Download Resume
+                </a>
+                <a class="btn ghost" href="https://github.com/KingGodFather007" target="_blank">
+                    🐙 View GitHub Profile
+                </a>
+                <a class="btn ghost" href="mailto:sumanshu.95s@outlook.com">
+                    ✉️ Email Me
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<nav class="nav">
+    <a href="#resume">Resume</a>
+    <a href="#projects">Projects</a>
+    <a href="#publications">Publications</a>
+    <a href="#research">Research</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#repos">GitHub Repos</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<main>
+    <!-- Resume Section -->
+    <section id="resume" class="card reveal">
+        <h2>Resume Highlights</h2>
+
+        <div class="timeline">
+            <article class="job">
+                <h3>FireEye SOC Analyst (Contract) — Trellix</h3>
+                <p class="meta">Washington, DC · Sep 2023 – Present</p>
+                <ul>
+                    <li>Refined SIEM correlation rules and KQL detections, reducing false positives by <b>30%</b>.</li>
+                    <li>Investigated and triaged complex malware and phishing incidents via log correlation and forensics.</li>
+                    <li>Onboarded and optimized cloud/third-party log sources, improving visibility by <b>40%</b>.</li>
+                    <li>Performed Tenable-based risk assessments, improving compliance by <b>25%</b>.</li>
+                </ul>
+            </article>
+
+            <article class="job">
+                <h3>Pentesting Intern — WithSecure, Inc.</h3>
+                <p class="meta">New York City · Jun 2022 – Aug 2022</p>
+                <ul>
+                    <li>Conducted web and network penetration testing across multiple industries.</li>
+                    <li>Scoped engagements, documented findings, and presented remediation guidance.</li>
+                    <li>Performed independent research on Windows malware behavior and detection.</li>
+                </ul>
+            </article>
+
+            <article class="job">
+                <h3>Cybersecurity SOC Specialist — HCL Technologies</h3>
+                <p class="meta">Noida, India · Oct 2017 – Jul 2021</p>
+                <ul>
+                    <li>Led response for high-impact incidents with containment and root-cause analysis.</li>
+                    <li>Implemented MITRE ATT&amp;CK-based use cases to mature SOC detections.</li>
+                    <li>Performed Qualys-driven vulnerability assessments and remediation tracking.</li>
+                </ul>
+            </article>
+        </div>
+
+        <div class="two-col">
+            <div>
+                <h3>Education</h3>
+                <p><b>University of Maryland, A. James Clark School of Engineering</b><br>
+                   Master of Engineering in Cybersecurity · GPA: 3.94 · May 2023
+                </p>
+            </div>
+            <div>
+                <h3>Core Technical Stack</h3>
+                <p>
+                    SIEM: Helix, ArcSight, QRadar, Splunk, LogRhythm, Sumo Logic<br>
+                    EDR: FireEye HX, CrowdStrike<br>
+                    SOAR: Siemplify, Demisto<br>
+                    Vuln Mgmt: Tenable IO, Qualys, Rapid7 InsightVM<br>
+                    Scripting & Query: Python, KQL, Regex, SQL<br>
+                    Frameworks: MITRE ATT&amp;CK, NIST CSF
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="card reveal">
+        <h2>Selected Projects</h2>
+        <div class="grid">
+            <article class="pill-card">
+                <h3>Endpoint Modules Health Check Automation</h3>
+                <p>Python-based automation to continuously validate endpoint security modules, cutting manual checks by ~90% and reducing blind spots.</p>
+                <ul>
+                    <li>Automated health-check workflows and reporting.</li>
+                    <li>Integrated with EDR data and SOC processes.</li>
+                </ul>
+            </article>
+
+            <article class="pill-card">
+                <h3>AWS Cloud Security Architecture & Migration</h3>
+                <p>Designed a secure AWS migration strategy with defense-in-depth controls for a business transitioning from on-prem to cloud.</p>
+                <ul>
+                    <li>Network segmentation, IAM hardening, logging strategy.</li>
+                    <li>Security baselines aligned with NIST and CIS controls.</li>
+                </ul>
+            </article>
+
+            <article class="pill-card">
+                <h3>EDR Evasion Research & Malware Development</h3>
+                <p>Lab-focused research to evaluate EDR detection gaps using controlled malware development and ATT&amp;CK-informed techniques.</p>
+                <ul>
+                    <li>Simulated realistic adversary tradecraft.</li>
+                    <li>Provided detection logic and rule enhancement guidance.</li>
+                </ul>
+            </article>
+        </div>
+    </section>
+
+    <!-- Publications (Paper-style) -->
+    <section id="publications" class="card reveal">
+        <h2>Publications</h2>
+
+        <article class="paper-card">
+            <div class="paper-meta">
+                <span class="venue">International Journal of Applied Mathematics (IJAM)</span>
+                <span class="year">2025 (accepted)</span>
+            </div>
+            <h3>Correlating SOC Maturity Levels (Based on ATT&amp;CK Adoption) with Incident Response Outcomes: An Empirical Study</h3>
+            <p class="paper-abstract">
+                Proposes a quantitative SOC maturity model grounded in MITRE ATT&amp;CK, and empirically correlates maturity levels with
+                incident response KPIs such as MTTD and MTTR across real-world SOC environments.
+            </p>
+            <p class="citation">
+                Sohal, S., <i>et al.</i>, “Correlating SOC Maturity Levels (Based on ATT&amp;CK Adoption) with Incident Response Outcomes:
+                An Empirical Study,” <i>International Journal of Applied Mathematics</i>, 2025.
+            </p>
+        </article>
+
+        <article class="paper-card">
+            <div class="paper-meta">
+                <span class="venue">Pattern Recognition (under review)</span>
+                <span class="year">2025</span>
+            </div>
+            <h3>Supervised vs. Unsupervised Pattern Recognition for SIEM False Positive Reduction</h3>
+            <p class="paper-abstract">
+                Evaluates Random Forest, XGBoost, Isolation Forest, and autoencoders on SOC datasets to compare supervised and
+                unsupervised approaches for reducing SIEM alert noise while preserving high detection coverage.
+            </p>
+            <p class="citation">
+                Sohal, S., “Supervised vs. Unsupervised Pattern Recognition for SIEM False Positive Reduction,” submitted to
+                <i>Pattern Recognition</i>, 2025.
+            </p>
+        </article>
+    </section>
+
+    <!-- Research Interests -->
+    <section id="research" class="card reveal">
+        <h2>Research Interests</h2>
+        <ul class="pill-list">
+            <li>SIEM false-positive reduction using ML</li>
+            <li>ATT&amp;CK-based SOC maturity modeling</li>
+            <li>Detection engineering & adversary emulation</li>
+            <li>Incident response metrics (MTTD, MTTR, AAS)</li>
+            <li>Security data pipelines & log analytics</li>
+        </ul>
+    </section>
+
+    <!-- Certifications -->
+    <section id="certifications" class="card reveal">
+        <h2>Certifications</h2>
+        <ul class="pill-list">
+            <li>CompTIA Security+</li>
+        </ul>
+    </section>
+
+    <!-- GitHub Repos (Auto-pulled) -->
+    <section id="repos" class="card reveal">
+        <h2>GitHub Repositories</h2>
+        <p class="section-intro">
+            A selection of recently updated public repositories from
+            <a href="https://github.com/KingGodFather007" target="_blank">@KingGodFather007</a>.
+        </p>
+        <div id="repos-list" class="grid repos-grid">
+            <p id="repos-loading">Loading repositories…</p>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="card reveal">
+        <h2>Contact Me</h2>
+        <p class="section-intro">
+            For roles in SOC operations, detection engineering, threat hunting, or security research collaboration.
+        </p>
+        <!-- Replace the Formspree endpoint with your own form ID later if you like -->
+        <form action="https://formspree.io/f/mjkbqlkr" method="POST" class="contact-form">
+            <label for="name">Your Name</label>
+            <input id="name" type="text" name="name" required>
+
+            <label for="email">Your Email</label>
+            <input id="email" type="email" name="_replyto" required>
+
+            <label for="message">Your Message</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+
+            <button type="submit" class="btn primary">Send Message</button>
+        </form>
+    </section>
+</main>
+
+<footer class="footer">
+    <p>© 2025 · Sumanshu Sohal · <a href="mailto:sumanshu.95s@outlook.com">sumanshu.95s@outlook.com</a></p>
+</footer>
+
+<script>
+// --- Dark mode toggle ---
+(function () {
+    const root = document.documentElement;
+    const toggle = document.getElementById('theme-toggle');
+
+    function setTheme(theme) {
+        root.setAttribute('data-theme', theme);
+        if (toggle) {
+            toggle.textContent = theme === 'dark' ? '🌙' : '☀️';
+        }
+        localStorage.setItem('theme', theme);
+    }
+
+    const saved = localStorage.getItem('theme');
+    if (saved === 'light' || saved === 'dark') {
+        setTheme(saved);
+    } else {
+        // default to dark, can auto-detect system if desired
+        setTheme('dark');
+    }
+
+    if (toggle) {
+        toggle.addEventListener('click', () => {
+            const current = root.getAttribute('data-theme');
+            setTheme(current === 'dark' ? 'light' : 'dark');
+        });
+    }
+})();
+
+// --- Reveal on scroll animation ---
+(function () {
+    const reveals = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) {
+        reveals.forEach(el => el.classList.add('visible'));
+        return;
+    }
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15 });
+
+    reveals.forEach(el => observer.observe(el));
+})();
+
+// --- Load GitHub repos for KingGodFather007 ---
+(async function loadRepos() {
+    const username = 'KingGodFather007';
+    const container = document.getElementById('repos-list');
+    const loadingEl = document.getElementById('repos-loading');
+
+    try {
+        const res = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=6`);
+        if (!res.ok) throw new Error('GitHub API error');
+        const repos = await res.json();
+
+        if (loadingEl) loadingEl.remove();
+
+        if (!repos.length) {
+            container.innerHTML = '<p>No public repositories found.</p>';
+            return;
+        }
+
+        repos.forEach(repo => {
+            const card = document.createElement('article');
+            card.className = 'pill-card repo-card';
+            card.innerHTML = `
+                <h3><a href="${repo.html_url}" target="_blank">${repo.name}</a></h3>
+                <p>${repo.description ? repo.description : 'No description provided.'}</p>
+                <div class="repo-meta">
+                    <span>${repo.language || 'Unknown language'}</span>
+                    <span>⭐ ${repo.stargazers_count}</span>
+                    <span>Updated: ${new Date(repo.updated_at).toLocaleDateString()}</span>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+    } catch (err) {
+        if (loadingEl) loadingEl.textContent = 'Unable to load repositories at this time.';
+        console.error(err);
+    }
+})();
+</script>
+
+</body>
+</html>
