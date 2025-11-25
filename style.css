@@ -1,16 +1,4 @@
 :root {
-    --bg: #f3f4f6;
-    --bg-elevated: #ffffff;
-    --text: #111827;
-    --muted: #6b7280;
-    --primary: #2563eb;
-    --primary-soft: rgba(37, 99, 235, 0.12);
-    --border-subtle: #e5e7eb;
-    --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.10);
-}
-
-/* We keep light variables for completeness, but page is always dark because of data-theme="dark" */
-:root[data-theme="dark"] {
     --bg: #020617;
     --bg-elevated: #020617;
     --text: #e5e7eb;
@@ -35,17 +23,19 @@ body {
     line-height: 1.6;
 }
 
-/* Global link styles (no purple visited) */
+/* Global links */
+
 a {
     color: var(--primary);
-}
-
-a:visited {
-    color: var(--primary);
+    text-decoration: none;
 }
 
 a:hover {
     color: #5ea3ff;
+}
+
+a:visited {
+    color: var(--primary); /* no purple visited links */
 }
 
 /* Hero */
@@ -138,7 +128,6 @@ a:hover {
     transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
-/* Override hover from global link hover */
 .nav a:hover {
     color: var(--primary);
     border-color: rgba(148, 163, 184, 0.6);
@@ -328,12 +317,11 @@ main {
 
 .paper-links {
     margin: 0;
-    font-size: 0.85rem;
+    font-size: 0.86rem;
 }
 
 .paper-link {
     color: var(--primary);
-    text-decoration: none;
     font-weight: 600;
 }
 
@@ -346,7 +334,7 @@ main {
     color: var(--primary);
 }
 
-/* Pills */
+/* Pills list */
 
 .pill-list {
     display: flex;
@@ -365,7 +353,7 @@ main {
     background: rgba(15, 23, 42, 0.9);
 }
 
-/* Repos (old look) */
+/* Repos */
 
 .repos-grid {
     margin-top: 8px;
