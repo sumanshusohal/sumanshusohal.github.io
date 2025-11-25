@@ -462,12 +462,17 @@ main {
 
 /* Publication / talk links */
 
-.paper-links a {
-    font-size: 0.82rem;
-    color: var(--primary);
+.paper-link {
+    color: var(--primary) !important;
     text-decoration: none;
+    font-weight: 600;
 }
 
-.paper-links a:hover {
+.paper-link:hover {
     text-decoration: underline;
+    color: #5ea3ff !important;
+}
+
+.paper-link:visited {
+    color: var(--primary) !important; /* same as normal → no purple */
 }
