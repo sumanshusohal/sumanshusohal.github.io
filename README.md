@@ -64,19 +64,6 @@ Replace the file inside:
 ### Edit Publications / Talks  
 All content is inside `index.html` under:
 
-<section id="publications"> <section id="talks"> ```
-Customize GitHub Repo Display
-The auto-fetch script uses:
-
-https://api.github.com/users/sumanshusohal/repos
-Edit in index.html if needed.
-
-🧪 Local Preview (Optional)
-If you want to test it locally:
-
-Right click → Open With → Browser
-No frameworks, no Jekyll needed (pure HTML/CSS/JS).
-
 🤝 Contact
 📧 sumanshu.95s@outlook.com
 🔗 LinkedIn: https://www.linkedin.com/in/sumanshu-sohal-256981130
