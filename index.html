@@ -20,10 +20,12 @@
                 Cybersecurity Engineer · Detection Engineering · Incident Response · Threat Hunting
             </p>
             <p class="summary">
-                Cybersecurity engineer with 6+ years of experience in incident response, SIEM architecture, and threat detection in enterprise environments. 
-                Proven track record building ATT&CK-mapped detections, leading IR efforts for high-severity incidents, and integrating security tooling 
-                spanning cloud and on-prem infrastructure. Skilled at collaborating with cross-functional teams to reduce risk, improve detection accuracy, 
-                and support compliance initiatives, with experience in delivering technical findings and remediation guidance to clients and executive stakeholders.
+                Cybersecurity engineer with 6+ years of experience in incident response, threat detection, SIEM architecture, and
+                behavior-based detection engineering across enterprise cloud and on-prem environments. Proven track record in
+                conducting in-depth analysis of high-severity security incidents, developing ATT&CK-mapped detections, optimizing
+                automations to scale detection and response, and partnering with cross-functional stakeholders to improve security
+                controls, tooling visibility, and logging coverage. Experienced in threat research, log analysis, and detection strategy
+                improvement, with ongoing doctoral work focused on AI applications in cybersecurity.
             </p>
 
             <div class="hero-actions">
@@ -61,33 +63,38 @@
 
         <div class="timeline">
             <article class="job">
-                <h3>Cybersecurity Engineer (Contract) — Trellix</h3>
-                <p class="meta">Washington, DC · Sep 2023 – Present</p>
+                <h3>Cybersecurity Engineer (Contract, Single Client) — Trellix</h3>
+                <p class="meta">Washington, DC · Sep 2023 – Mar 2026</p>
                 <ul>
-                    <li>Led high-severity incident investigations and forensic analysis across hybrid infrastructure.</li>
-                    <li>Deployed Trellix NX/NDR sensors and architected detection coverage improvements.</li>
-                    <li>Authored <b>50+ ATT&CK-mapped detections</b> and integrated <b>15+ log sources</b> into Helix SIEM.</li>
-                    <li>Performed vulnerability assessments and supported SOC 2 compliance initiatives.</li>
+                    <li>Led in-depth analysis of high-severity incidents across endpoint, cloud, and network environments by performing triage and forensic analysis, documenting adversary TTPs, and coordinating containment, remediation, and proactive mitigation strategies.</li>
+                    <li>Deployed and maintained Trellix NX (IPS) sensors in inline mode and Trellix PX appliances to enhance network visibility, analyze TCP/IP traffic, and support packet-level investigations during incident response.</li>
+                    <li>Managed Trellix HX (EDR) agent rollout and prevention policy tuning to strengthen endpoint protection.</li>
+                    <li>Researched emerging cyber threats, vulnerabilities, and adversary tradecraft to enhance threat hunting and correlate threat indicators using Helix and HX telemetry.</li>
+                    <li>Performed gap assessments by onboarding <b>15+ cloud and third-party log sources</b> into Trellix Helix SIEM.</li>
+                    <li>Authored and tuned <b>50+ MITRE ATT&CK-mapped behavioral detections</b> for lateral movement, persistence, authentication abuse, and C2, resulting in a <b>30% reduction in detection time</b>.</li>
+                    <li>Drive quarterly vulnerability assessments and CIS benchmark evaluations using Tenable, and support SOC 2 audit activities.</li>
                 </ul>
             </article>
 
             <article class="job">
                 <h3>Pentesting Intern — WithSecure, Inc.</h3>
-                <p class="meta">New York City · Jun 2022 – Aug 2022</p>
+                <p class="meta">New York City, NY · Jun 2022 – Aug 2022</p>
                 <ul>
-                    <li>Conducted web and network penetration testing across multiple client engagements.</li>
-                    <li>Identified critical vulnerabilities including SQL injection and authentication bypass.</li>
-                    <li>Delivered detailed remediation reports with risk-prioritized recommendations.</li>
+                    <li>Collaborated with clients on scoping calls to define assessment boundaries for <b>8+ web and network penetration tests</b>.</li>
+                    <li>Conducted web and network vulnerability assessments, identifying critical findings including SQL injection, authentication bypass, and misconfigured network services.</li>
+                    <li>Delivered detailed remediation reports with prioritized, actionable recommendations aligned to risk severity.</li>
+                    <li>Conducted independent research on Windows malware techniques to strengthen threat detection capabilities.</li>
                 </ul>
             </article>
 
             <article class="job">
-                <h3>Tier 3 SOC Specialist — HCL Technologies</h3>
-                <p class="meta">Noida, India · Oct 2017 – Jul 2021</p>
+                <h3>Tier 3 SOC Specialist (Multiple Clients) — HCL Technologies Pvt. Ltd.</h3>
+                <p class="meta">Noida, UP, India · Oct 2017 – Jul 2021</p>
                 <ul>
-                    <li>Led enterprise incident response with SOAR automation, reducing MTTR by <b>40%</b>.</li>
-                    <li>Deployed and integrated QRadar and Splunk for SOC 2 and PCI-DSS compliance.</li>
-                    <li>Created ATT&CK-mapped use cases and refined detection accuracy across environments.</li>
+                    <li>Led enterprise incident response efforts, including containment, eradication, and root-cause analysis. Built automated response workflows in Siemplify SOAR, reducing MTTR by <b>40%</b>.</li>
+                    <li>Deployed and integrated QRadar and Splunk environments for centralized event collection, log management, and compliance automation (SOC 2, PCI-DSS). Configured log forwarding across <b>50+ sources</b>.</li>
+                    <li>Partnered with cross-functional teams to develop and refine incident response playbooks and improved security awareness throughout the organization.</li>
+                    <li>Created use cases mapped to the MITRE ATT&CK framework based on client-specific threat profiles with regular tuning sessions to improve accuracy and reduce false positives.</li>
                 </ul>
             </article>
         </div>
@@ -95,7 +102,10 @@
         <div class="two-col">
             <div>
                 <h3>Education</h3>
-                <p><b>University of Maryland, A. James Clark School of Engineering</b><br>
+                <p><b>University of the Cumberlands</b> — Williamsburg, KY<br>
+                   Executive Ph.D. in Information Technology, emphasis Artificial Intelligence · Mar 2026 – Present
+                </p>
+                <p><b>University of Maryland, A. James Clark School of Engineering</b> — College Park, MD<br>
                    Master of Engineering in Cybersecurity · GPA: 3.94 · May 2023
                 </p>
             </div>
@@ -118,6 +128,17 @@
     <section id="projects" class="card reveal">
         <h2>Projects</h2>
         <div class="grid">
+            <article class="pill-card">
+                <h3>RAA: Compliance Mapping Agent</h3>
+                <p>ReAct-style agentic system for automated regulatory compliance traceability recovery across GDPR, NIST, HIPAA, PCI DSS, SOX, ISO 27001, and CCPA.</p>
+                <ul>
+                    <li>Multi-backend retrieval fusion (TF-IDF, BM25, LSI) with domain-aware query reformulation.</li>
+                    <li>Achieves +21% Top-1 accuracy over best baselines with selective prediction.</li>
+                    <li>Accepts external regulation files (CSV/Excel) for custom compliance mapping.</li>
+                </ul>
+                <p><a href="https://github.com/sumanshusohal/RAA-Compliance-Mapping" target="_blank">View on GitHub</a></p>
+            </article>
+
             <article class="pill-card">
                 <h3>Endpoint Modules Health Check Automation</h3>
                 <p>Developed a Python tool to automate endpoint health checks, reducing manual effort by ~90% and ensuring continuous endpoint protection environment-wide.</p>
@@ -157,7 +178,7 @@
         <article class="paper-card">
             <div class="paper-meta">
                 <span class="venue">International Journal of Applied Mathematics (IJAM)</span>
-                <span class="year">2025 (accepted)</span>
+                <span class="year">2025</span>
             </div>
             <h3>Correlating SOC Maturity Levels (Based on ATT&amp;CK Adoption) with Incident Response Outcomes: An Empirical Study</h3>
             <p class="paper-abstract">
@@ -229,6 +250,8 @@
     <section id="research" class="card reveal">
         <h2>Research Interests</h2>
         <ul class="pill-list">
+            <li>AI-driven regulatory compliance mapping</li>
+            <li>Agentic systems for cybersecurity automation</li>
             <li>SIEM false-positive reduction using ML</li>
             <li>ATT&amp;CK-based SOC maturity modeling</li>
             <li>Detection engineering &amp; adversary emulation</li>
@@ -262,7 +285,7 @@
 </main>
 
 <footer class="footer">
-    <p>© 2025 · Sumanshu Sohal · <a href="mailto:sumanshu.95s@outlook.com">sumanshu.95s@outlook.com</a></p>
+    <p>© 2026 · Sumanshu Sohal · <a href="mailto:sumanshu.95s@outlook.com">sumanshu.95s@outlook.com</a></p>
 </footer>
 
 <script>
