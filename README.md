@@ -1,37 +1,99 @@
-# Sumanshu Sohal Portfolio
+# 🌐 Personal Cybersecurity Portfolio — Sumanshu Sohal
 
-Personal portfolio website for Sumanshu Sohal, hosted with GitHub Pages.
+Welcome to the repository for my personal cybersecurity portfolio website, hosted using **GitHub Pages**.
 
-Live site:
+This site serves as a professional hub for:
+- My résumé
+- Cybersecurity experience
+- Education
+- Core technical stack
+- Cybersecurity projects
+- Research interests
+- Publications
+- Contact links
+
+---
+
+## 🚀 Live Website
+
+🔗 **https://sumanshusohal.github.io**
+
+---
+
+## 🌙 Features
+
+- Responsive dark portfolio design
+- Cybersecurity-focused visual style
+- Downloadable résumé
+- Experience highlights
+- Education and core stack sections
+- Project and research sections
+- GitHub, LinkedIn, email, and résumé links
+- Hosted entirely with GitHub Pages
+
+---
+
+## 🛠️ How to Deploy
+
+GitHub Pages deploys automatically from the **main branch**.
+
+If needed:
+
+1. Go to **Settings → Pages**
+2. Under **Source**, choose **Deploy from branch**
+3. Select:
+   - **Branch:** `main`
+   - **Folder:** `/ (root)`
+4. Click **Save**
+
+Your site will be available at:
 
 https://sumanshusohal.github.io
 
-## What is included
+---
 
-- `index.html` for the main page structure
-- `style.css` for layout, styling, and visual treatment
-- `script.js` for lightweight interaction behavior
-- `assets/hero-portrait.png` for the background artwork
-- `resume/Sumanshu_Sohal_resume.pdf` for the downloadable resume
+## ✏️ How to Update Content
 
-## Main sections
+### Edit the main site
 
-- Intro
-- Experience
-- Education
-- Core Stack
-- Projects
-- Research
-- Contact
+Most page content is inside:
 
-## Update the site
+`index.html`
 
-- Edit page content in `index.html`
-- Adjust styling in `style.css`
-- Update interactions in `script.js`
-- Replace the resume in `resume/Sumanshu_Sohal_resume.pdf`
-- Replace artwork in `assets/hero-portrait.png` if needed
+### Edit styles
 
-## Deployment
+Main styling is inside:
 
-The site is deployed through GitHub Pages from the `main` branch of this repository.
+`style.css`
+
+### Edit interactions
+
+Lightweight JavaScript is inside:
+
+`script.js`
+
+### Replace résumé
+
+Replace the file inside:
+
+`resume/Sumanshu_Sohal_resume.pdf`
+
+### Replace artwork
+
+Replace the image inside:
+
+`assets/hero-portrait.png`
+
+---
+
+## 🤝 Contact
+
+📧 Email: sumanshu.95s@outlook.com
+
+🔗 LinkedIn: https://www.linkedin.com/in/sumanshu-sohal-256981130
+
+🐙 GitHub: https://github.com/sumanshusohal
+
+---
+
+⭐ Thank you for visiting!
