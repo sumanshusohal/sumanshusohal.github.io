@@ -1,81 +1,37 @@
-# 🌐 Personal Cybersecurity Portfolio — Sumanshu Sohal
+# Sumanshu Sohal Portfolio
 
-Welcome to the repository for my personal cybersecurity portfolio website, hosted using **GitHub Pages**.
+Personal portfolio website for Sumanshu Sohal, hosted with GitHub Pages.
 
-This site serves as a professional hub for:
-- My résumé  
-- Cybersecurity projects  
-- Publications
-- Talks & presentations  
-- Research interests  
-- Certifications  
-- Auto-loaded GitHub repositories  
-- Contact form  
-
----
-
-## 🚀 Live Website
-
-🔗 **https://sumanshusohal.github.io**
-
----
-
-
-## 🌙 Features
-
-- Fully responsive modern dark UI  
-- Smooth reveal animations  
-- Paper-style cards for publications & talks  
-- Auto-pulls GitHub repositories via GitHub API  
-- Contact form powered by Formspree  
-- Clean, modular HTML & CSS  
-- Hosted entirely with GitHub Pages (free)
-
----
-
-## 🛠️ How to Deploy (Already Done)
-
-GitHub Pages deploys automatically from the **main branch**.
-
-If needed:
-
-1. Go to  
-   **Settings → Pages**
-2. Under “Source”, choose:  
-   **Deploy from branch**
-3. Select:
-   - **Branch:** `main`
-   - **Folder:** `/ (root)`
-4. Click **Save**.
-
-Your site will be available at:
+Live site:
 
 https://sumanshusohal.github.io
 
----
+## What is included
 
-## ✏️ How to Update Content
+- `index.html` for the main page structure
+- `style.css` for layout, styling, and visual treatment
+- `script.js` for lightweight interaction behavior
+- `assets/hero-portrait.png` for the background artwork
+- `resume/Sumanshu_Sohal_resume.pdf` for the downloadable resume
 
-### Edit your résumé  
-Replace the file inside:
+## Main sections
 
-/resume/Sumanshu_Sohal_resume.pdf
+- Intro
+- Experience
+- Education
+- Core Stack
+- Projects
+- Research
+- Contact
 
-### Edit Publications / Talks  
-All content is inside `index.html` under:
+## Update the site
 
-🤝 Contact
-📧 sumanshu.95s@outlook.com
-🔗 LinkedIn: https://www.linkedin.com/in/sumanshu-sohal-256981130
-🐙 GitHub: https://github.com/sumanshusohal
+- Edit page content in `index.html`
+- Adjust styling in `style.css`
+- Update interactions in `script.js`
+- Replace the resume in `resume/Sumanshu_Sohal_resume.pdf`
+- Replace artwork in `assets/hero-portrait.png` if needed
 
----
+## Deployment
 
-
-⭐ License
-This project is open-source under the MIT License.
-Feel free to fork or build your own site using this template.
-
----
-
-Thank you for visiting!
+The site is deployed through GitHub Pages from the `main` branch of this repository.
