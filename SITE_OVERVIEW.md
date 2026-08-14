@@ -12,17 +12,18 @@ The cinematic setting frames the cybersecurity content and does not represent a 
 
 ## Layered animation system
 
-The hero is a WebGL scene built with Three.js and React Three Fiber:
+The hero combines a cinematic chamber plate, independently animated depth layers, and a WebGL scene built with Three.js and React Three Fiber:
 
-1. Eleven modeled metal vault ribs create corridor perspective.
-2. A scroll-controlled camera moves through the opening sequence.
-3. The cryo pod uses physical transmission, thickness, refraction, and roughness.
-4. Coolant, frost, and ice use independent particle systems.
-5. Two shader-driven fog planes create atmosphere at separate depths.
-6. A scanner and dynamic lights illuminate the chamber geometry.
-7. Bloom, film noise, ACES tone mapping, and vignette shape the final image.
-8. Foreground rails react independently to pointer movement.
-9. Interface labels remain crisp HTML above the WebGL scene.
+1. A full-screen photoreal chamber plate establishes scale and industrial detail.
+2. Volumetric beams, near and far fog, ice particles, scan light, and warning glow move independently.
+3. Eleven modeled metal vault ribs create corridor perspective in the WebGL layer.
+4. A scroll-controlled camera moves through the opening sequence.
+5. The cryo pod uses physical transmission, thickness, refraction, and roughness.
+6. Coolant, frost, and ice use independent particle systems.
+7. Two shader-driven fog planes create atmosphere at separate depths.
+8. Bloom, film noise, ACES tone mapping, and vignette shape the final image.
+9. Foreground rails react independently to pointer movement.
+10. Interface labels remain crisp HTML above the animated scene.
 
 An HTML and CSS chamber sits beneath the WebGL layer as a progressive fallback. It appears while the 3D bundle loads and remains available on devices without WebGL. Reduced-motion users receive a stable camera and particle state.
 

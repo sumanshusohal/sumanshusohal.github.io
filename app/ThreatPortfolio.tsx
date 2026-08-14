@@ -290,11 +290,24 @@ export function ThreatPortfolio() {
       <main id="main-content">
         <section className="hero" id="top" aria-labelledby="hero-title">
           <div className="hero-sticky">
+            <div className={`hero-cinematic-scene ${containmentActive ? "is-purging" : ""}`} aria-hidden="true">
+              <div className="hero-cinematic-plate" />
+              <div className="hero-depth-beam hero-depth-beam-one" />
+              <div className="hero-depth-beam hero-depth-beam-two" />
+              <div className="hero-atmosphere hero-atmosphere-far" />
+              <div className="hero-atmosphere hero-atmosphere-near" />
+              <div className="hero-ice-field" />
+              <div className="hero-chamber-scan" />
+              <div className="hero-warning-glow" />
+              <div className="hero-scene-grade" />
+            </div>
+
             <div className="hero-copy">
-              <p className="system-kicker"><span aria-hidden="true">CRYO VAULT / </span> CHAMBER 07: ISOLATED</p>
-              <h1 id="hero-title">When systems go dark,<br /><em>I find the signal.</em></h1>
+              <p className="system-kicker"><span aria-hidden="true">CRYO VAULT / </span> SECURITY NODE 07</p>
+              <h1 id="hero-title">Sumanshu Sohal</h1>
+              <p className="hero-role">Cybersecurity Engineer <i aria-hidden="true">/</i> AI Researcher</p>
               <p className="hero-summary">
-                I’m Sumanshu Sohal, a cybersecurity engineer and PhD researcher building resilient detection, response, and AI systems under pressure.
+                <strong>When systems go dark, I find the signal.</strong> Detection engineering, incident response, and applied AI built for high-pressure environments.
               </p>
               <div className="hero-actions">
                 <a className="button button-primary" href="#systems">Explore systems <span aria-hidden="true">↘</span></a>

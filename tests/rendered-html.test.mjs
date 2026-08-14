@@ -43,6 +43,8 @@ test("keeps the WebGL chamber, layered fallback, reduced-motion support, and key
   ]);
 
   assert.match(page, /higgsfield-cryo-chamber\.mp4/);
+  assert.match(page, /hero-cinematic-plate/);
+  assert.match(page, /hero-atmosphere-near/);
   assert.match(page, /prefers-reduced-motion/);
   assert.match(page, /aria-expanded=\{intelOpen\}/);
   assert.match(page, /Initiate containment sequence/);
@@ -61,6 +63,7 @@ test("keeps the WebGL chamber, layered fallback, reduced-motion support, and key
   assert.match(styles, /@keyframes bubble-rise/);
   assert.match(styles, /\.motion-ready\.in-view/);
   await access(new URL("../public/og-cryo.png", import.meta.url));
+  await access(new URL("../public/hero-cryo-chamber.png", import.meta.url));
   await access(new URL("../public/resume/Sumanshu_Sohal_Resume.pdf", import.meta.url));
   await assert.rejects(access(new URL("../app/_sites-preview", import.meta.url)));
   await access(projectRoot);

@@ -22,9 +22,11 @@ The content and downloadable PDF are based on the AWS CIRT Security Engineer res
 The site opens inside a dark isolated cryogenic chamber. The animation is rendered as a layered scene with:
 
 - A Three.js and React Three Fiber WebGL environment
+- A full-screen cinematic chamber plate with independent depth layers
 - Industrial vault ribs and near-camera foreground rails
 - A physically shaded glass cryo pod
 - Coolant, frost, suspended ice, fog, and scanner layers
+- Slow camera breathing, volumetric beams, parallax fog, ice drift, and containment lighting
 - Scroll and pointer-responsive camera movement
 - Bloom, film noise, vignette, and cinematic tone mapping
 - An interactive containment sequence
