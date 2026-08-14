@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { CryoChamber } from "./CryoChamber";
 
@@ -118,6 +118,7 @@ const capabilities = [
 ];
 
 export function ThreatPortfolio() {
+  const tunnelFrameRef = useRef<HTMLIFrameElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("top");
   const [videoReady, setVideoReady] = useState(false);
@@ -147,6 +148,11 @@ export function ThreatPortfolio() {
       root.style.setProperty("--shift-fast", `${y * -0.15}px`);
       root.style.setProperty("--page-progress", `${progress}`);
       root.style.setProperty("--hero-progress", `${heroProgress}`);
+      root.style.setProperty("--tunnel-opacity", `${Math.min(Math.max((heroProgress - 0.68) / 0.32, 0), 1) * 0.72}`);
+      tunnelFrameRef.current?.contentWindow?.postMessage(
+        { type: "tunnel-scroll", progress },
+        window.location.origin,
+      );
       frame = 0;
     };
 
@@ -156,12 +162,20 @@ export function ThreatPortfolio() {
       const y = event.clientY / window.innerHeight - 0.5;
       root.style.setProperty("--pointer-x", `${x * 22}px`);
       root.style.setProperty("--pointer-y", `${y * 16}px`);
+      tunnelFrameRef.current?.contentWindow?.postMessage(
+        { type: "tunnel-pointer", x: x * 2, y: y * -2, active: true },
+        window.location.origin,
+      );
     };
 
     const resetPointer = () => {
       const root = document.documentElement;
       root.style.setProperty("--pointer-x", "0px");
       root.style.setProperty("--pointer-y", "0px");
+      tunnelFrameRef.current?.contentWindow?.postMessage(
+        { type: "tunnel-pointer", x: 0, y: 0, active: false },
+        window.location.origin,
+      );
     };
 
     const onScroll = () => {
@@ -237,6 +251,21 @@ export function ThreatPortfolio() {
       <div className="scroll-progress" aria-hidden="true"><span /></div>
 
       <div className="ambient-stage" aria-hidden="true">
+        <iframe
+          ref={tunnelFrameRef}
+          className="tunnel-background"
+          src="/tunnel-background.html"
+          title="Procedural tunnel background"
+          tabIndex={-1}
+          loading="eager"
+          onLoad={event => {
+            const pageHeight = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+            event.currentTarget.contentWindow?.postMessage(
+              { type: "tunnel-scroll", progress: Math.min(window.scrollY / pageHeight, 1) },
+              window.location.origin,
+            );
+          }}
+        />
         <video
           className={`higgsfield-layer ${videoReady ? "is-ready" : ""}`}
           autoPlay

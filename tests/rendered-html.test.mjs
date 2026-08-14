@@ -34,12 +34,13 @@ test("server-renders the completed cybersecurity portfolio", async () => {
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|react-loading-skeleton/i);
 });
 
-test("keeps the WebGL chamber, layered fallback, reduced-motion support, and key assets", async () => {
-  const [page, cryoChamber, cryoChamber3D, styles] = await Promise.all([
+test("keeps the WebGL chamber, tunnel background, reduced-motion support, and key assets", async () => {
+  const [page, cryoChamber, cryoChamber3D, styles, tunnel] = await Promise.all([
     readFile(new URL("../app/ThreatPortfolio.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/CryoChamber.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/CryoChamber3D.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
+    readFile(new URL("../public/tunnel-background.html", import.meta.url), "utf8"),
   ]);
 
   assert.match(page, /higgsfield-cryo-chamber\.mp4/);
@@ -48,6 +49,9 @@ test("keeps the WebGL chamber, layered fallback, reduced-motion support, and key
   assert.match(page, /prefers-reduced-motion/);
   assert.match(page, /aria-expanded=\{intelOpen\}/);
   assert.match(page, /Initiate containment sequence/);
+  assert.match(page, /tunnel-background\.html/);
+  assert.match(page, /tunnel-scroll/);
+  assert.match(page, /tunnel-pointer/);
   assert.match(cryoChamber, /cryo-rib-plane/);
   assert.match(cryoChamber, /ice-particle-field/);
   assert.match(cryoChamber, /chamber-scan/);
@@ -62,8 +66,17 @@ test("keeps the WebGL chamber, layered fallback, reduced-motion support, and key
   assert.match(styles, /@keyframes chamber-scan/);
   assert.match(styles, /@keyframes bubble-rise/);
   assert.match(styles, /\.motion-ready\.in-view/);
+  assert.match(styles, /--tunnel-opacity/);
+  assert.match(styles, /\.tunnel-background/);
+  assert.match(tunnel, /three@0\.143\.0\/build\/three\.module\.js/);
+  assert.match(tunnel, /new THREE\.SphereGeometry\(4\.2, 200, 600\)/);
+  assert.match(tunnel, /float snoise\(vec3 v\)/);
+  assert.match(tunnel, /new UnrealBloomPass\(new THREE\.Vector2\(innerWidth, innerHeight\), 0\.7, 0\.6, 0\)/);
+  assert.match(tunnel, /id="scroll-host"/);
+  assert.doesNotMatch(`${page}\n${styles}\n${tunnel}`, /\u2014/);
   await access(new URL("../public/og-cryo.png", import.meta.url));
   await access(new URL("../public/hero-cryo-chamber.png", import.meta.url));
+  await access(new URL("../public/tunnel-background.html", import.meta.url));
   await access(new URL("../public/resume/Sumanshu_Sohal_Resume.pdf", import.meta.url));
   await assert.rejects(access(new URL("../app/_sites-preview", import.meta.url)));
   await access(projectRoot);

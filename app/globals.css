@@ -21,6 +21,7 @@
   --shift-fast: 0px;
   --page-progress: 0;
   --hero-progress: 0;
+  --tunnel-opacity: 0;
   --pointer-x: 0px;
   --pointer-y: 0px;
 }
@@ -107,10 +108,24 @@ a:focus-visible {
 .ambient-stage {
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: 0;
   overflow: hidden;
   pointer-events: none;
   background: var(--void);
+}
+
+.tunnel-background {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #000;
+  filter: saturate(0.84) contrast(1.12) brightness(0.72);
+  opacity: var(--tunnel-opacity);
+  pointer-events: none;
+  transition: opacity 420ms linear;
+  will-change: opacity;
 }
 
 .higgsfield-layer {
@@ -316,6 +331,8 @@ a:focus-visible {
 }
 
 main {
+  position: relative;
+  z-index: 1;
   overflow: clip;
 }
 
@@ -2251,6 +2268,8 @@ footer {
 .contact-orbit i:nth-child(3) { bottom: 9%; left: 27%; }
 
 footer {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
@@ -2639,6 +2658,10 @@ footer > span {
   }
 
   .higgsfield-layer {
+    display: none;
+  }
+
+  .tunnel-background {
     display: none;
   }
 

@@ -24,10 +24,14 @@ The hero combines a cinematic chamber plate, independently animated depth layers
 8. Bloom, film noise, ACES tone mapping, and vignette shape the final image.
 9. Foreground rails react independently to pointer movement.
 10. Interface labels remain crisp HTML above the animated scene.
+11. The cryogenic hero transitions into a fixed procedural wormhole behind the remaining portfolio sections.
+12. The tunnel uses additive points, 3D simplex noise, scroll flight, pointer steering, cyan motes, layered bloom, and violet corner flames.
 
 An HTML and CSS chamber sits beneath the WebGL layer as a progressive fallback. It appears while the 3D bundle loads and remains available on devices without WebGL. Reduced-motion users receive a stable camera and particle state.
 
 The containment control briefly changes the chamber from nominal ice-blue to a contained red fault state.
+
+The tunnel is isolated in `public/tunnel-background.html` and uses Three.js r0.143.0 through an import map. The main page sends normalized scroll and pointer data into that background while keeping all content and contact controls accessible above it. Reduced-motion users receive the existing static ambient treatment instead.
 
 ## Reference boundaries
 

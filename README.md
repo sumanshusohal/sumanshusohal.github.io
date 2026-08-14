@@ -33,6 +33,8 @@ The site opens inside a dark isolated cryogenic chamber. The animation is render
 - An immediate HTML and CSS fallback for unsupported devices
 - Reduced-motion behavior for accessibility
 
+After the cryogenic opening, the page fades into a procedural tunnel background built with Three.js r0.143.0. The tunnel uses additive point geometry, simplex-noise wall deformation, cyan atmosphere motes, pointer steering, scroll-driven flight, layered bloom, and a violet-cyan composite shader. It runs from a self-contained ES-module page at `public/tunnel-background.html` and receives scroll and pointer state from the portfolio.
+
 The chamber is an original visual system. External references informed atmosphere and layered composition, but no template code, artwork, branding, or layout was copied.
 
 ## Technology
@@ -44,6 +46,7 @@ The chamber is an original visual system. External references informed atmospher
 - React Three Fiber
 - React Three Drei
 - React Three Postprocessing
+- Three.js r0.143.0 ES modules for the procedural tunnel
 - CSS animations and responsive layouts
 
 ## Local Development
