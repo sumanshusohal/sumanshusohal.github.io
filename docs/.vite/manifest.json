@@ -1,0 +1,63 @@
+{
+  "_framework-WSngbuiA.js": {
+    "file": "_next/static/chunks/framework-WSngbuiA.js",
+    "name": "framework",
+    "imports": [
+      "_rolldown-runtime-C60lm6uB.js"
+    ]
+  },
+  "_rolldown-runtime-C60lm6uB.js": {
+    "file": "_next/static/chunks/rolldown-runtime-C60lm6uB.js",
+    "name": "rolldown-runtime"
+  },
+  "app/CryoChamber3D.tsx": {
+    "file": "_next/static/chunks/CryoChamber3D-BPoY52H1.js",
+    "name": "CryoChamber3D",
+    "src": "app/CryoChamber3D.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-C60lm6uB.js",
+      "_framework-WSngbuiA.js"
+    ]
+  },
+  "app/ThreatPortfolio.tsx": {
+    "file": "_next/static/chunks/ThreatPortfolio-Dgm1wGlC.js",
+    "name": "ThreatPortfolio",
+    "src": "app/ThreatPortfolio.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-C60lm6uB.js",
+      "virtual:vinext-app-browser-entry",
+      "_framework-WSngbuiA.js"
+    ],
+    "dynamicImports": [
+      "app/CryoChamber3D.tsx"
+    ]
+  },
+  "node_modules/vinext/dist/shims/layout-segment-context.js": {
+    "file": "_next/static/chunks/layout-segment-context-DA1oSLZq.js",
+    "name": "layout-segment-context",
+    "src": "node_modules/vinext/dist/shims/layout-segment-context.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-C60lm6uB.js",
+      "virtual:vinext-app-browser-entry",
+      "_framework-WSngbuiA.js"
+    ]
+  },
+  "virtual:vinext-app-browser-entry": {
+    "file": "_next/static/chunks/index-CmndKLbL.js",
+    "name": "index",
+    "src": "virtual:vinext-app-browser-entry",
+    "isEntry": true,
+    "imports": [
+      "_rolldown-runtime-C60lm6uB.js",
+      "_framework-WSngbuiA.js"
+    ],
+    "dynamicImports": [
+      "virtual:vinext-app-browser-entry",
+      "node_modules/vinext/dist/shims/layout-segment-context.js",
+      "app/ThreatPortfolio.tsx"
+    ]
+  }
+}
