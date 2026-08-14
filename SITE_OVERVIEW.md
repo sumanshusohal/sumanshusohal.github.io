@@ -37,7 +37,7 @@ No paid template, source code, artwork, character, branding, or layout was copie
 
 ## Resume verification
 
-The downloadable resume is a portfolio copy of the AWS CIRT Security Engineer resume dated August 14, 2026. Its only content change is the contact email, which is `sumanshu.95s@outlook.com`. The site reflects the following details:
+The downloadable resume is a public-safe portfolio copy of the AWS CIRT Security Engineer resume dated August 14, 2026. It uses `sumanshu.95s@outlook.com` and omits the private phone number. The site reflects the following details:
 
 - Trellix Cybersecurity Engineer: September 2023 through March 2026
 - Executive PhD in Information Technology with an AI emphasis: March 2026 to present
