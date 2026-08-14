@@ -36,16 +36,17 @@ No paid template, source code, artwork, character, branding, or layout was copie
 
 ## Resume verification
 
-The newest resume reviewed in the portfolio workspace is dated April 27, 2026. The site reflects the following details:
+The downloadable resume is an exact copy of the AWS CIRT Security Engineer resume dated August 14, 2026. The site reflects the following details:
 
 - Trellix Cybersecurity Engineer: September 2023 through March 2026
 - Executive PhD in Information Technology with an AI emphasis: March 2026 to present
 - Six-plus years of cybersecurity experience
-- More than 50 ATT&CK-mapped detections
+- Security operations support across 12 business units
+- More than 15 production detections mapped to MITRE ATT&CK
 - More than 15 onboarded sources
-- A reported 30 percent improvement in detection speed
 - HCL Tier 3 SOC Specialist and WithSecure Pentesting Intern experience
-- The verified 2025 SOC maturity publication and DOI
+- The 2026 AI-powered mobile telemetry publication and DOI
+- The 2025 SOC maturity publication and DOI
 
 Trellix is presented as completed experience. AI-driven false-positive reduction is presented as a research direction. ORCID remains omitted until a verified profile URL is available.
 

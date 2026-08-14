@@ -18,9 +18,9 @@ const navigation = [
 
 const metrics = [
   { value: "6+", label: "years in cyber defense" },
-  { value: "50+", label: "ATT&CK-mapped detections" },
+  { value: "12", label: "business units supported" },
+  { value: "15+", label: "production detections" },
   { value: "15+", label: "log sources onboarded" },
-  { value: "30%", label: "reduction in detection time" },
 ];
 
 const experience = [
@@ -29,11 +29,11 @@ const experience = [
     organization: "Trellix · Washington, DC",
     role: "Cybersecurity Engineer",
     summary:
-      "Detection engineering and high-severity incident response across endpoint, cloud, and network telemetry for a large enterprise environment.",
+      "Trellix Helix, HX, and NX incident response and detection engineering across a North American client's 12 business units.",
     outcomes: [
-      "Built and tuned 50+ behavioral detections mapped to MITRE ATT&CK.",
-      "Expanded SIEM coverage with 15+ cloud and third-party data sources.",
-      "Improved detection speed by 30% through tuning and automation.",
+      "Led technical investigations, determined scope, and guided customer teams through remediation.",
+      "Implemented and tuned 15+ production detections mapped to MITRE ATT&CK.",
+      "Onboarded and validated 15+ application, endpoint, cloud, and infrastructure log sources.",
     ],
     code: "NX · HX · HELIX",
   },
@@ -42,11 +42,11 @@ const experience = [
     organization: "WithSecure · New York, NY",
     role: "Pentesting Intern",
     summary:
-      "Web and network security testing, client scoping, and practical remediation guidance across more than eight assessments.",
+      "Contributed to eight team-delivered penetration tests and researched Windows malware execution techniques.",
     outcomes: [
-      "Tested authentication, application, and network attack surfaces.",
-      "Identified critical and high-severity weaknesses.",
-      "Translated findings into prioritized remediation plans.",
+      "Worked under manager guidance alongside other penetration testers.",
+      "Studied malware execution behavior and endpoint telemetry.",
+      "Identified opportunities for endpoint detection coverage.",
     ],
     code: "OFFENSIVE SECURITY",
   },
@@ -57,9 +57,9 @@ const experience = [
     summary:
       "Multi-client SOC leadership spanning enterprise incident response, SIEM engineering, detection strategy, and SOAR automation.",
     outcomes: [
-      "Reduced mean time to resolution by 40% with automated workflows.",
-      "Integrated more than 50 sources into SIEM and reporting pipelines.",
-      "Validated response playbooks through threat-based tabletop exercises.",
+      "Coordinated Tier 3 response during priority incidents in a 24/7 managed SOC.",
+      "Built Siemplify SOAR playbooks for enrichment, phishing response, and containment.",
+      "Authored SPL investigations and briefed client CISOs during significant incidents.",
     ],
     code: "SIEM · SOAR · IR",
   },
@@ -70,7 +70,7 @@ const systems = [
     number: "01",
     eyebrow: "Applied automation",
     title: "Endpoint health intelligence",
-    copy: "A Python health-check system that replaced repetitive endpoint review, reduced manual effort by 90%, and made protection coverage easier to verify.",
+    copy: "Python automation that streamlined endpoint validation, automated repetitive checklist steps, and reduced manual analyst effort.",
     tags: ["Python", "Endpoint", "Automation"],
     action: { label: "Discuss the system", href: "mailto:sumanshu.95s@outlook.com?subject=Endpoint%20health%20system" },
   },

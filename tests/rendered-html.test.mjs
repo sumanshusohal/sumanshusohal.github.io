@@ -26,6 +26,9 @@ test("server-renders the completed cybersecurity portfolio", async () => {
   assert.match(html, /When systems go dark/i);
   assert.match(html, /Operational depth/i);
   assert.match(html, /Correlating SOC Maturity Levels/i);
+  assert.match(html, /<strong>12<\/strong><p>business units supported<\/p>/i);
+  assert.match(html, /<strong>15\+<\/strong><p>production detections<\/p>/i);
+  assert.doesNotMatch(html, /50\+ ATT&amp;CK-mapped detections|30% reduction in detection time/i);
   assert.match(html, /Skip to content/i);
   assert.doesNotMatch(html, /\u2014/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|react-loading-skeleton/i);

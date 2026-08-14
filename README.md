@@ -6,13 +6,15 @@ Live site: [sumanshusohal.github.io](https://sumanshusohal.github.io/)
 
 ## Experience
 
-The content is based on the latest resume reviewed in the portfolio workspace, dated April 27, 2026. Featured experience includes:
+The content and downloadable PDF are based on the AWS CIRT Security Engineer resume dated August 14, 2026. Featured experience includes:
 
 - Cybersecurity Engineer at Trellix
 - Tier 3 SOC Specialist at HCL Technologies
 - Pentesting Intern at WithSecure
 - Executive PhD research in Information Technology with an AI emphasis
 - Six-plus years of cybersecurity experience
+- Trellix security operations support across 12 business units
+- More than 15 production detections and 15 onboarded log sources
 - Detection engineering, EDR, SIEM, threat hunting, incident response, and MITRE ATT&CK mapping
 
 ## Visual Direction
