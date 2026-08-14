@@ -6,7 +6,7 @@ Live site: [sumanshusohal.github.io](https://sumanshusohal.github.io/)
 
 ## Experience
 
-The content and downloadable PDF are based on the AWS CIRT Security Engineer resume dated August 14, 2026. Featured experience includes:
+The content and downloadable PDF are based on the AWS CIRT Security Engineer resume dated August 14, 2026. The portfolio copy uses `sumanshu.95s@outlook.com` as its contact email. Featured experience includes:
 
 - Cybersecurity Engineer at Trellix
 - Tier 3 SOC Specialist at HCL Technologies
