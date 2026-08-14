@@ -1,64 +1,64 @@
-# Sumanshu Sohal portfolio: review overview
+# Sumanshu Sohal portfolio overview
 
-Status: local review build only. Nothing has been pushed to GitHub or published.
+Status: deployed to GitHub Pages.
 
-## Current direction
+Live site: [sumanshusohal.github.io](https://sumanshusohal.github.io/)
 
-The previous quantum-field concept has been removed from the live experience. The portfolio now opens inside an isolated cryogenic vault: almost-black industrial architecture, restrained ice-blue illumination, frosted glass, drifting vapor, suspended particles, and one muted red containment state.
+## Creative direction
 
-The cybersecurity content remains recruiter-ready and grounded in the latest résumé. The cinematic setting is a visual frame, not a claim about the work.
+The portfolio uses an isolated cryogenic vault rather than the earlier quantum-field concept. Its visual language combines almost-black industrial architecture, restrained ice-blue illumination, frosted glass, drifting vapor, suspended particles, and one muted red containment state.
 
-## Three.js layered animation system
+The cinematic setting frames the cybersecurity content and does not represent a claim about the underlying work.
 
-The GetLayers library was reviewed for composition and interaction patterns. No paid template, prompt, source code, branding, or layout was copied. The hero is now a true WebGL scene built with Three.js and React Three Fiber:
+## Layered animation system
 
-1. Eleven modeled metal vault ribs create real corridor perspective.
-2. A scroll-controlled 3D camera moves through the opening sequence.
-3. The cryo pod uses physical transmission, thickness, refraction, and roughness for glass.
-4. Coolant, frost, and suspended ice use independent animated particle systems.
-5. Two GLSL fog planes create drifting volumetric atmosphere at different depths.
-6. A moving scanner, dynamic cold lights, and a contained red fault state illuminate the geometry.
-7. Bloom, film noise, ACES tone mapping, and vignette provide cinematic post-processing.
-8. Near-camera metal rails respond independently to pointer motion.
-9. Interface labels remain crisp HTML above the WebGL layer.
+The hero is a WebGL scene built with Three.js and React Three Fiber:
 
-The original HTML/CSS chamber remains underneath as a progressive fallback. It appears immediately while the 3D bundle loads and remains the full visual for devices without WebGL. Reduced-motion users receive a stable camera and particle state.
+1. Eleven modeled metal vault ribs create corridor perspective.
+2. A scroll-controlled camera moves through the opening sequence.
+3. The cryo pod uses physical transmission, thickness, refraction, and roughness.
+4. Coolant, frost, and ice use independent particle systems.
+5. Two shader-driven fog planes create atmosphere at separate depths.
+6. A scanner and dynamic lights illuminate the chamber geometry.
+7. Bloom, film noise, ACES tone mapping, and vignette shape the final image.
+8. Foreground rails react independently to pointer movement.
+9. Interface labels remain crisp HTML above the WebGL scene.
 
-The “Initiate containment sequence” control briefly changes the chamber from nominal ice-blue to a contained red fault state.
+An HTML and CSS chamber sits beneath the WebGL layer as a progressive fallback. It appears while the 3D bundle loads and remains available on devices without WebGL. Reduced-motion users receive a stable camera and particle state.
 
-## Visual references
+The containment control briefly changes the chamber from nominal ice-blue to a contained red fault state.
 
-The supplied dark-ambient video informed the pace and atmosphere: heavy negative space, industrial scale, dim desaturated light, slow haze, and a single warm warning accent. Its characters and artwork were not copied.
+## Reference boundaries
 
-GetLayers informed the layered construction method: foreground, focal object, atmosphere, and background separated into independent planes. The final chamber design, content, styling, and interaction are original to this portfolio.
+The supplied dark ambient video informed pacing, industrial scale, negative space, haze, and warning-light restraint. GetLayers informed the general method of separating foreground, subject, atmosphere, and background into independent planes.
 
-## Résumé verification
+No paid template, source code, artwork, character, branding, or layout was copied. The chamber design and interaction are original to this portfolio.
 
-The newest portfolio résumé copy is dated April 27, 2026 and matches the second portfolio copy byte-for-byte. The site reflects these facts:
+## Resume verification
 
-- Trellix Cybersecurity Engineer: September 2023 through March 2026.
-- Executive PhD in Information Technology, AI emphasis: March 2026 to present.
-- Six-plus years of cybersecurity experience.
-- 50+ ATT&CK-mapped detections, 15+ onboarded sources, and 30% faster detection.
-- HCL Tier 3 SOC Specialist and WithSecure Pentesting Intern experience.
-- The verified 2025 SOC maturity publication and DOI.
+The newest resume reviewed in the portfolio workspace is dated April 27, 2026. The site reflects the following details:
 
-Trellix is presented as completed experience. AI-driven false-positive reduction remains a research direction rather than a completed result. ORCID remains omitted because no verified profile URL was found.
+- Trellix Cybersecurity Engineer: September 2023 through March 2026
+- Executive PhD in Information Technology with an AI emphasis: March 2026 to present
+- Six-plus years of cybersecurity experience
+- More than 50 ATT&CK-mapped detections
+- More than 15 onboarded sources
+- A reported 30 percent improvement in detection speed
+- HCL Tier 3 SOC Specialist and WithSecure Pentesting Intern experience
+- The verified 2025 SOC maturity publication and DOI
+
+Trellix is presented as completed experience. AI-driven false-positive reduction is presented as a research direction. ORCID remains omitted until a verified profile URL is available.
 
 ## Higgsfield handoff
 
-The optional background clip path is now:
+The optional video path is:
 
 `public/media/higgsfield-cryo-chamber.mp4`
 
-The connected Higgsfield capability was previously detected, but generation required a paid plan in the selected workspace. No subscription or trial was started. The site does not depend on the video; the chamber is rendered live in Three.js, with an HTML/CSS fallback.
+The portfolio does not depend on this video. The primary chamber renders live in Three.js, with an HTML and CSS fallback. Generation and export guidance are in `public/media/README.md`.
 
-The revised generation brief and export guidance are in `public/media/README.md`.
+## Deployment
 
-## Review before GitHub
+The production Vinext application is exported into `docs/` by `npm run export:pages`. GitHub Pages publishes that directory from the `main` branch.
 
-1. Review the local site at `http://localhost:3000/`.
-2. Confirm the cryo-vault direction, hero headline, and containment interaction.
-3. Confirm the project descriptions and whether the compliance-mapping repository should remain featured.
-4. Add an ORCID link only after providing the verified profile URL.
-5. Approve content and motion before any GitHub push.
+The previous website is preserved on the remote branch `backup-before-cryo-20260814-133848`.
