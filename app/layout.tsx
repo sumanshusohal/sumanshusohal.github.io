@@ -19,10 +19,10 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/og-cryo.png",
-        width: 1729,
+        url: "/og-signal-console.png",
+        width: 1728,
         height: 910,
-        alt: "Sumanshu Sohal, Cybersecurity Engineer and AI Researcher",
+        alt: "Sumanshu Sohal cybersecurity evidence console",
       },
     ],
   },
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     title: "Sumanshu Sohal | Cybersecurity Engineer & AI Researcher",
     description:
       "Detection engineering, incident response, SOC research, and applied AI for measurable cyber defense.",
-    images: ["/og-cryo.png"],
+    images: ["/og-signal-console.png"],
   },
 };
 

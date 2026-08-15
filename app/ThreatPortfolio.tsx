@@ -1,19 +1,56 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import dynamic from "next/dynamic";
-import { CryoChamber } from "./CryoChamber";
-
-const CryoChamber3D = dynamic(
-  () => import("./CryoChamber3D").then((module) => module.CryoChamber3D),
-  { ssr: false },
-);
+import {
+  useEffect,
+  useRef,
+  useState,
+  type MouseEvent as ReactMouseEvent,
+  type PointerEvent as ReactPointerEvent,
+} from "react";
 
 const navigation = [
   { href: "#experience", label: "Experience" },
   { href: "#systems", label: "Systems" },
   { href: "#research", label: "Research" },
   { href: "#contact", label: "Uplink" },
+];
+
+const worldLabels: Record<string, string> = {
+  "#top": "SIGNAL OBSERVATORY",
+  "#metrics": "OPERATING PICTURE",
+  "#experience": "SOC MEMORY",
+  "#systems": "EVIDENCE SYSTEMS",
+  "#research": "RESEARCH LATTICE",
+  "#contact": "SECURE UPLINK",
+};
+
+const worldTransitions = [
+  {
+    code: "WORLDLINE 01 / PROVENANCE",
+    statement: "The signal has a history.",
+    trail: "Tier 3 SOC response / penetration testing / malware-execution research / enterprise detection engineering",
+    destination: "SOC MEMORY / 01",
+    fieldLog:
+      "FICTIONAL DESIGN LOG / An imagined alien interface cartographer crossed isolated worlds and translated their signal systems into this human defense archive.",
+  },
+  {
+    code: "WORLDLINE 02 / SYNTHESIS",
+    statement: "Experience compiled into working systems.",
+    trail: "Automation / regulatory traceability / EDR visibility / cloud defense",
+    destination: "EVIDENCE SYSTEMS / 02",
+  },
+  {
+    code: "WORLDLINE 03 / INFERENCE",
+    statement: "Observed gaps become testable questions.",
+    trail: "Explainable AI / ATT&CK maturity / measurable SOC outcomes",
+    destination: "RESEARCH LATTICE / 03",
+  },
+  {
+    code: "WORLDLINE 04 / RETURN CHANNEL",
+    statement: "The next signal starts with a conversation.",
+    trail: "Security engineering / incident response / cloud security / applied AI",
+    destination: "SECURE UPLINK / 05",
+  },
 ];
 
 const metrics = [
@@ -68,33 +105,62 @@ const experience = [
 const systems = [
   {
     number: "01",
+    eyebrow: "Agentic AI security",
+    title: "Autonomous SOC Triage Agent",
+    copy: "A bounded, auditable AI agent that triages EDR and SIEM alerts, selects threat-intelligence tools, resists prompt injection in attacker-controlled content, and submits every decision to a deterministic policy engine.",
+    outcome: "0% false negatives on the labeled evaluation set",
+    signal: "7 stages / 6-call budget / 4 policy constraints",
+    status: "FEATURED ON KANZ AI",
+    visual: "triage",
+    tags: ["Agentic AI", "SOC", "EDR", "Policy engine"],
+    action: { label: "View on Kanz AI", href: "https://try.ka.nz/ai/sumanshusohal" },
+    media: "/media/soc-triage-agent-demo.mp4",
+  },
+  {
+    number: "02",
     eyebrow: "Applied automation",
     title: "Endpoint health intelligence",
     copy: "Python automation that streamlined endpoint validation, automated repetitive checklist steps, and reduced manual analyst effort.",
+    outcome: "Automated repetitive endpoint validation",
+    signal: "Python / endpoint telemetry / analyst workflow",
+    status: "PRODUCTION",
+    visual: "endpoint",
     tags: ["Python", "Endpoint", "Automation"],
     action: { label: "Discuss the system", href: "mailto:sumanshu.95s@outlook.com?subject=Endpoint%20health%20system" },
   },
   {
-    number: "02",
+    number: "03",
     eyebrow: "AI + regulatory engineering",
     title: "Compliance mapping agent",
     copy: "An agentic retrieval project exploring traceability across major security and privacy frameworks, designed to connect evidence, obligations, and controls.",
+    outcome: "Connects evidence to control obligations",
+    signal: "NIST / retrieval / agentic traceability",
+    status: "RESEARCH PROTOTYPE",
+    visual: "mapping",
     tags: ["AI agents", "NIST", "Traceability"],
     action: { label: "View repository", href: "https://github.com/sumanshusohal/RAA-Compliance-Mapping" },
   },
   {
-    number: "03",
+    number: "04",
     eyebrow: "Detection research",
     title: "EDR gap analysis",
     copy: "Controlled adversary simulation using Nim proof-of-concepts to study behavioral blind spots, including direct syscalls and in-memory execution.",
+    outcome: "Turns blind spots into observable test cases",
+    signal: "Nim / direct syscalls / EDR telemetry",
+    status: "CONTROLLED LAB",
+    visual: "trace",
     tags: ["EDR", "Nim", "Adversary simulation"],
     action: { label: "Request research notes", href: "mailto:sumanshu.95s@outlook.com?subject=EDR%20gap%20research" },
   },
   {
-    number: "04",
+    number: "05",
     eyebrow: "Cloud architecture",
     title: "AWS security migration",
     copy: "A defense-in-depth cloud migration plan centered on hardened identity, segmented networks, defensible logging, and a measurable security baseline.",
+    outcome: "Defines an identity-first, logged cloud baseline",
+    signal: "AWS / IAM / segmentation / observability",
+    status: "ARCHITECTURE CASE STUDY",
+    visual: "cloud",
     tags: ["AWS", "IAM", "Cloud security"],
     action: { label: "Discuss the architecture", href: "mailto:sumanshu.95s@outlook.com?subject=AWS%20security%20architecture" },
   },
@@ -117,23 +183,355 @@ const capabilities = [
   "Wireshark",
 ];
 
+const careerRecords = {
+  trellix: {
+    period: "2023 to 2026",
+    organization: "Trellix",
+    role: "Cybersecurity Engineer",
+    summary: "Incident response and detection engineering across a North American client's 12 business units.",
+    proof: [
+      ["15+", "Production detections"],
+      ["15+", "Log sources onboarded"],
+      ["12", "Business units supported"],
+      ["ATT&CK", "Detection mapping"],
+    ],
+  },
+  withsecure: {
+    period: "2022",
+    organization: "WithSecure",
+    role: "Pentesting Intern",
+    summary: "Contributed to eight team-delivered penetration tests and studied Windows malware execution and endpoint telemetry.",
+    proof: [
+      ["8", "Team-delivered tests"],
+      ["Windows", "Execution research"],
+      ["Endpoint", "Telemetry analysis"],
+      ["Team", "Guided delivery"],
+    ],
+  },
+  hcl: {
+    period: "2017 to 2021",
+    organization: "HCL Technologies",
+    role: "Tier 3 SOC Specialist",
+    summary: "Coordinated Tier 3 response, SIEM investigations, and SOAR automation in a 24/7 managed SOC.",
+    proof: [
+      ["Tier 3", "Incident response"],
+      ["Siemplify", "SOAR playbooks"],
+      ["SPL", "Investigations"],
+      ["24/7", "Managed SOC"],
+    ],
+  },
+  phd: {
+    period: "2026 to Present",
+    organization: "University of the Cumberlands",
+    role: "Executive PhD, Information Technology",
+    summary: "Doctoral research with an Artificial Intelligence emphasis, focused on traceable and operationally useful cybersecurity systems.",
+    proof: [
+      ["Applied AI", "Cybersecurity"],
+      ["Evidence", "Traceability"],
+      ["Human", "Validation"],
+      ["SOC", "Operational value"],
+    ],
+  },
+};
+
+type CareerRecord = keyof typeof careerRecords;
+
+const instrumentLibrary = {
+  triage: {
+    label: "Bounded SOC decision pipeline",
+    options: [
+      { key: "ingest", label: "Ingest", detail: "The agent isolates attacker-controlled alert text from trusted control instructions before any tool is selected.", readout: ["Alert isolated", "Prompt boundary", "Context parsed", "Queue ready"] },
+      { key: "enrich", label: "Enrich", detail: "Threat-intelligence calls execute inside a six-call hard budget and every observation is attached to the audit trail.", readout: ["Alert isolated", "Tool budget", "Intel evidence", "Trace logged"] },
+      { key: "decide", label: "Decide", detail: "The model proposes a disposition, then four deterministic policy constraints approve, veto, or escalate it.", readout: ["Evidence scored", "Proposal", "Policy veto", "Disposition"] },
+      { key: "audit", label: "Audit", detail: "The final decision remains explainable because the evidence, tool calls, policy checks, and outcome are preserved together.", readout: ["Evidence", "Tool calls", "Policy checks", "Audit complete"] },
+    ],
+  },
+  endpoint: {
+    label: "Endpoint triage simulation",
+    options: [
+      { key: "detect", label: "Detect", detail: "A stale or missing endpoint signal enters the validation queue.", readout: ["Telemetry gap", "Endpoint state", "Last check-in", "Queue created"] },
+      { key: "validate", label: "Validate", detail: "Automated checks confirm service health, agent state, and connectivity before analyst review.", readout: ["Telemetry gap", "Service check", "Agent state", "Validated"] },
+      { key: "enrich", label: "Enrich", detail: "Context is attached so the analyst receives a decision-ready record instead of a raw failure.", readout: ["Asset context", "Owner", "Risk tier", "Enriched"] },
+      { key: "route", label: "Route", detail: "The validated result follows the correct remediation path with repetitive checks already completed.", readout: ["Decision", "Owner", "Priority", "Routed"] },
+    ],
+  },
+  mapping: {
+    label: "Evidence traceability field",
+    options: [
+      { key: "policy", label: "Policy", detail: "A policy statement is retrieved, interpreted, and connected to its control obligation.", readout: ["Policy source", "Retrieval path", "Control family", "Trace verified"] },
+      { key: "telemetry", label: "Telemetry", detail: "Operational evidence is linked to the control it supports while preserving the reasoning path.", readout: ["Log evidence", "Reasoning", "Mapped control", "Trace verified"] },
+      { key: "exception", label: "Exception", detail: "An exception is classified as an unresolved condition and routed for human validation.", readout: ["Exception", "Obligation", "Control owner", "Review required"] },
+    ],
+  },
+  trace: {
+    label: "EDR visibility test bench",
+    options: [
+      { key: "standard", label: "Standard path", detail: "The controlled sequence produces a familiar trail across process, image, and behavioral telemetry.", readout: ["Process create", "Image load", "Memory event", "Behavior visible"] },
+      { key: "reduced", label: "Reduced telemetry", detail: "The same objective is tested through a lower-visibility path, exposing where compensating signals are needed.", readout: ["Process create", "Signal reduced", "Memory gap", "Compensate"] },
+    ],
+  },
+  cloud: {
+    label: "AWS defense-layer simulator",
+    options: [
+      { key: "baseline", label: "Baseline", detail: "The starting architecture exposes where identity, segmentation, logging, and detection are incomplete.", readout: ["Identity", "Network", "Logging", "Detection"] },
+      { key: "hardened", label: "Hardened", detail: "The target state reconnects each layer into an identity-first, observable security baseline.", readout: ["Least privilege", "Segmentation", "Central logs", "Detection ready"] },
+    ],
+  },
+};
+
+type InstrumentName = keyof typeof instrumentLibrary;
+
+function WorldTransition({
+  code,
+  statement,
+  trail,
+  destination,
+  fieldLog,
+}: {
+  code: string;
+  statement: string;
+  trail: string;
+  destination: string;
+  fieldLog?: string;
+}) {
+  return (
+    <div className="world-transition">
+      <div className="world-transition-copy">
+        <span className="world-transition-code">{code}</span>
+        <strong>{statement}</strong>
+        <small>{trail}</small>
+        {fieldLog && <p>{fieldLog}</p>}
+      </div>
+      <div className="world-gate" aria-hidden="true">
+        <i /><i /><i /><b />
+      </div>
+      <span className="world-transition-target">{destination}</span>
+    </div>
+  );
+}
+
+function SystemInstrument({
+  visual,
+  selection,
+  onSelect,
+}: {
+  visual: InstrumentName;
+  selection: string;
+  onSelect: (selection: string) => void;
+}) {
+  const instrument = instrumentLibrary[visual];
+  const selectedIndex = Math.max(instrument.options.findIndex((option) => option.key === selection), 0);
+  const selected = instrument.options[selectedIndex];
+
+  return (
+    <div className={`system-instrument instrument-${visual}`}>
+      <div className="instrument-heading">
+        <span>Interactive instrument</span>
+        <strong>{instrument.label}</strong>
+      </div>
+      <div className="instrument-controls" role="group" aria-label={instrument.label}>
+        {instrument.options.map((option) => (
+          <button
+            className={option.key === selected.key ? "is-selected" : ""}
+            type="button"
+            key={option.key}
+            aria-pressed={option.key === selected.key}
+            onClick={() => onSelect(option.key)}
+          >
+            {option.label}
+          </button>
+        ))}
+      </div>
+      <div className="instrument-stage" data-mode={selected.key} aria-hidden="true">
+        {selected.readout.map((item, index) => (
+          <span className={index <= selectedIndex || visual === "trace" || visual === "cloud" ? "is-active" : ""} key={item}>
+            <i />{item}
+          </span>
+        ))}
+      </div>
+      <p className="instrument-description" aria-live="polite">{selected.detail}</p>
+    </div>
+  );
+}
+
 export function ThreatPortfolio() {
   const tunnelFrameRef = useRef<HTMLIFrameElement>(null);
+  const heroVideoRef = useRef<HTMLVideoElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const transitTimersRef = useRef<number[]>([]);
+  const transitFrameRef = useRef<number>(0);
+  const transitTokenRef = useRef(0);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("top");
-  const [videoReady, setVideoReady] = useState(false);
   const [intelOpen, setIntelOpen] = useState(false);
-  const [containmentSignal, setContainmentSignal] = useState(0);
-  const [containmentActive, setContainmentActive] = useState(false);
+  const [careerRecord, setCareerRecord] = useState<CareerRecord>("trellix");
+  const [motionPaused, setMotionPaused] = useState(false);
+  const [systemReducedMotion, setSystemReducedMotion] = useState(false);
+  const [compactNavigation, setCompactNavigation] = useState(false);
+  const [transitActive, setTransitActive] = useState(false);
+  const [transitArriving, setTransitArriving] = useState(false);
+  const [transitLabel, setTransitLabel] = useState("SIGNAL OBSERVATORY");
+  const [transitMessage, setTransitMessage] = useState("");
+  const [activeInstrument, setActiveInstrument] = useState<string | null>(null);
+  const [instrumentSelections, setInstrumentSelections] = useState<Record<string, string>>({
+    triage: "ingest",
+    endpoint: "detect",
+    mapping: "policy",
+    trace: "standard",
+    cloud: "baseline",
+  });
+  const motionSuppressed = motionPaused || systemReducedMotion;
 
-  const initiateContainment = () => {
-    setContainmentSignal((signal) => signal + 1);
-    setContainmentActive(true);
-    window.setTimeout(() => setContainmentActive(false), 5200);
+  const updateCardTilt = (event: ReactPointerEvent<HTMLElement>) => {
+    if (event.pointerType !== "mouse" || motionSuppressed) return;
+    const bounds = event.currentTarget.getBoundingClientRect();
+    const x = (event.clientX - bounds.left) / bounds.width;
+    const y = (event.clientY - bounds.top) / bounds.height;
+    event.currentTarget.style.setProperty("--card-rx", `${(0.5 - y) * 6}deg`);
+    event.currentTarget.style.setProperty("--card-ry", `${(x - 0.5) * 7}deg`);
+    event.currentTarget.style.setProperty("--card-glow-x", `${x * 100}%`);
+    event.currentTarget.style.setProperty("--card-glow-y", `${y * 100}%`);
   };
+
+  const resetCardTilt = (event: ReactPointerEvent<HTMLElement>) => {
+    event.currentTarget.style.setProperty("--card-rx", "0deg");
+    event.currentTarget.style.setProperty("--card-ry", "0deg");
+    event.currentTarget.style.setProperty("--card-glow-x", "50%");
+    event.currentTarget.style.setProperty("--card-glow-y", "50%");
+  };
+
+  const beginWorldTransit = (
+    event: ReactMouseEvent<HTMLAnchorElement>,
+    destinationLabel?: string,
+  ) => {
+    const href = event.currentTarget.getAttribute("href");
+    setMenuOpen(false);
+    if (
+      !href?.startsWith("#") ||
+      event.button !== 0 ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey
+    ) return;
+
+    const target = document.querySelector<HTMLElement>(href);
+    if (!target) return;
+
+    const label = destinationLabel ?? worldLabels[href] ?? "NEXT WORLD";
+    const keyboardActivation = event.detail === 0;
+    const shouldFocusTarget = keyboardActivation || (compactNavigation && Boolean(event.currentTarget.closest("#primary-navigation")));
+    const reducedMotion = motionSuppressed;
+
+    transitTokenRef.current += 1;
+    const token = transitTokenRef.current;
+    transitTimersRef.current.forEach((timer) => window.clearTimeout(timer));
+    transitTimersRef.current = [];
+    if (transitFrameRef.current) window.cancelAnimationFrame(transitFrameRef.current);
+
+    setTransitLabel(label);
+    setTransitMessage("");
+    setTransitActive(false);
+    setTransitArriving(false);
+
+    transitTimersRef.current.push(window.setTimeout(() => {
+      if (token === transitTokenRef.current) setTransitMessage(`Navigating to ${label}.`);
+    }, 0));
+
+    if (!reducedMotion) {
+      transitFrameRef.current = window.requestAnimationFrame(() => {
+        if (token !== transitTokenRef.current) return;
+        setTransitActive(true);
+        transitFrameRef.current = 0;
+      });
+      transitTimersRef.current.push(window.setTimeout(() => {
+        if (token === transitTokenRef.current) setTransitArriving(true);
+      }, 430));
+      transitTimersRef.current.push(window.setTimeout(() => {
+        if (token !== transitTokenRef.current) return;
+        setTransitActive(false);
+        setTransitArriving(false);
+      }, 760));
+    }
+
+    if (shouldFocusTarget) {
+      transitTimersRef.current.push(window.setTimeout(() => {
+        target.focus({ preventScroll: true });
+      }, 0));
+    }
+  };
+
+  useEffect(() => () => {
+    transitTimersRef.current.forEach((timer) => window.clearTimeout(timer));
+    if (transitFrameRef.current) window.cancelAnimationFrame(transitFrameRef.current);
+  }, []);
+
+  useEffect(() => {
+    const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const compactNavigationQuery = window.matchMedia("(max-width: 820px)");
+    const updatePreferences = () => {
+      setSystemReducedMotion(reducedMotionQuery.matches);
+      setCompactNavigation(compactNavigationQuery.matches);
+    };
+
+    updatePreferences();
+    reducedMotionQuery.addEventListener("change", updatePreferences);
+    compactNavigationQuery.addEventListener("change", updatePreferences);
+    return () => {
+      reducedMotionQuery.removeEventListener("change", updatePreferences);
+      compactNavigationQuery.removeEventListener("change", updatePreferences);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!motionSuppressed) return;
+    transitTokenRef.current += 1;
+    transitTimersRef.current.forEach((timer) => window.clearTimeout(timer));
+    transitTimersRef.current = [];
+    if (transitFrameRef.current) window.cancelAnimationFrame(transitFrameRef.current);
+    transitFrameRef.current = 0;
+    const cleanupFrame = window.requestAnimationFrame(() => {
+      setTransitActive(false);
+      setTransitArriving(false);
+    });
+    return () => window.cancelAnimationFrame(cleanupFrame);
+  }, [motionSuppressed]);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const closeMenu = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+      setMenuOpen(false);
+      menuButtonRef.current?.focus();
+    };
+    document.addEventListener("keydown", closeMenu);
+    return () => document.removeEventListener("keydown", closeMenu);
+  }, [menuOpen]);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("motion-paused", motionPaused);
+    tunnelFrameRef.current?.contentWindow?.postMessage(
+      { type: "tunnel-active", active: !motionSuppressed && activeSection !== "top" },
+      window.location.origin,
+    );
+    return () => document.documentElement.classList.remove("motion-paused");
+  }, [motionPaused, motionSuppressed, activeSection]);
+
+  useEffect(() => {
+    const video = heroVideoRef.current;
+    if (!video) return;
+    if (motionSuppressed) {
+      video.pause();
+      return;
+    }
+    const playback = video.play();
+    if (playback) void playback.catch(() => undefined);
+  }, [motionSuppressed]);
 
   useEffect(() => {
     let frame = 0;
+    let pointerFrame = 0;
+    let latestPointer: PointerEvent | null = null;
 
     const updateMotion = () => {
       const y = window.scrollY;
@@ -153,25 +551,45 @@ export function ThreatPortfolio() {
         { type: "tunnel-scroll", progress },
         window.location.origin,
       );
+      tunnelFrameRef.current?.contentWindow?.postMessage(
+        { type: "tunnel-active", active: !motionSuppressed && heroProgress > 0.62 },
+        window.location.origin,
+      );
       frame = 0;
     };
 
-    const updatePointer = (event: PointerEvent) => {
+    const updatePointerFrame = () => {
+      if (!latestPointer) return;
+      const event = latestPointer;
       const root = document.documentElement;
       const x = event.clientX / window.innerWidth - 0.5;
       const y = event.clientY / window.innerHeight - 0.5;
       root.style.setProperty("--pointer-x", `${x * 22}px`);
       root.style.setProperty("--pointer-y", `${y * 16}px`);
+      root.style.setProperty("--pointer-rx", `${y * -3}deg`);
+      root.style.setProperty("--pointer-ry", `${x * 5}deg`);
+      root.style.setProperty("--cursor-x", `${event.clientX}px`);
+      root.style.setProperty("--cursor-y", `${event.clientY}px`);
+      root.classList.add("observer-active");
       tunnelFrameRef.current?.contentWindow?.postMessage(
         { type: "tunnel-pointer", x: x * 2, y: y * -2, active: true },
         window.location.origin,
       );
+      pointerFrame = 0;
+    };
+
+    const updatePointer = (event: PointerEvent) => {
+      latestPointer = event;
+      if (!pointerFrame) pointerFrame = window.requestAnimationFrame(updatePointerFrame);
     };
 
     const resetPointer = () => {
       const root = document.documentElement;
       root.style.setProperty("--pointer-x", "0px");
       root.style.setProperty("--pointer-y", "0px");
+      root.style.setProperty("--pointer-rx", "0deg");
+      root.style.setProperty("--pointer-ry", "0deg");
+      root.classList.remove("observer-active");
       tunnelFrameRef.current?.contentWindow?.postMessage(
         { type: "tunnel-pointer", x: 0, y: 0, active: false },
         window.location.origin,
@@ -191,13 +609,14 @@ export function ThreatPortfolio() {
       window.removeEventListener("pointermove", updatePointer);
       window.removeEventListener("pointerleave", resetPointer);
       if (frame) window.cancelAnimationFrame(frame);
+      if (pointerFrame) window.cancelAnimationFrame(pointerFrame);
     };
-  }, []);
+  }, [motionSuppressed]);
 
   useEffect(() => {
     const revealNodes = Array.from(
       document.querySelectorAll<HTMLElement>(
-        ".section-intro, .timeline-entry, .system-card, .research-copy, .publication-card, .capability-band > *, .contact-section > *:not(.contact-orbit)",
+        ".world-transition, .section-intro, .timeline-entry, .system-card, .research-copy, .publication-card, .capability-band > *, .contact-section > *:not(.contact-orbit)",
       ),
     );
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -213,6 +632,10 @@ export function ThreatPortfolio() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
+          if (entry.target.classList.contains("world-transition")) {
+            entry.target.classList.toggle("in-view", entry.isIntersecting);
+            return;
+          }
           if (entry.isIntersecting) {
             entry.target.classList.add("in-view");
             observer.unobserve(entry.target);
@@ -245,10 +668,36 @@ export function ThreatPortfolio() {
     return () => observer.disconnect();
   }, []);
 
+  const selectedCareer = careerRecords[careerRecord];
+
   return (
     <>
       <a className="skip-link" href="#main-content">Skip to content</a>
+      <div className="world-atmosphere" data-world={activeSection} aria-hidden="true">
+        <span className="world-atmosphere-top" />
+        <span className="world-atmosphere-experience" />
+        <span className="world-atmosphere-systems" />
+        <span className="world-atmosphere-research" />
+        <span className="world-atmosphere-contact" />
+      </div>
+      <div
+        className={`world-transit-overlay ${transitActive ? "is-active" : ""} ${transitArriving ? "is-arriving" : ""}`}
+        aria-hidden="true"
+      >
+        <div className="transit-iris"><i /><i /><i /><b /></div>
+        <p><span>INTERWORLD TRANSIT</span><strong>{transitLabel}</strong></p>
+      </div>
+      <p className="sr-only" role="status" aria-live="polite">{transitMessage}</p>
       <div className="scroll-progress" aria-hidden="true"><span /></div>
+      <button
+        className="motion-control"
+        type="button"
+        aria-pressed={motionSuppressed}
+        disabled={systemReducedMotion}
+        onClick={() => setMotionPaused((paused) => !paused)}
+      >
+        <span aria-hidden="true" /> Motion {systemReducedMotion ? "reduced by system" : motionPaused ? "paused" : "active"}
+      </button>
 
       <div className="ambient-stage" aria-hidden="true">
         <iframe
@@ -260,24 +709,19 @@ export function ThreatPortfolio() {
           loading="eager"
           onLoad={event => {
             const pageHeight = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+            const hero = document.getElementById("top");
+            const heroTravel = Math.max((hero?.offsetHeight ?? window.innerHeight) - window.innerHeight, 1);
+            const heroProgress = Math.min(Math.max(window.scrollY / heroTravel, 0), 1);
             event.currentTarget.contentWindow?.postMessage(
               { type: "tunnel-scroll", progress: Math.min(window.scrollY / pageHeight, 1) },
               window.location.origin,
             );
+            event.currentTarget.contentWindow?.postMessage(
+              { type: "tunnel-active", active: !motionSuppressed && heroProgress > 0.62 },
+              window.location.origin,
+            );
           }}
         />
-        <video
-          className={`higgsfield-layer ${videoReady ? "is-ready" : ""}`}
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="metadata"
-          onCanPlay={() => setVideoReady(true)}
-          onError={() => setVideoReady(false)}
-        >
-          <source src="/media/higgsfield-cryo-chamber.mp4" type="video/mp4" />
-        </video>
         <div className="dust-layer dust-layer-far" />
         <div className="dust-layer dust-layer-near" />
         <div className="cryo-haze" />
@@ -287,10 +731,11 @@ export function ThreatPortfolio() {
       </div>
 
       <header className="site-header">
-        <a className="wordmark" href="#top" aria-label="Sohal Cyber Defense, back to top">
+        <a className="wordmark" href="#top" aria-label="Sohal Cyber Defense, back to top" onClick={(event) => beginWorldTransit(event, "SIGNAL OBSERVATORY")}>
           <span aria-hidden="true">SOHAL // CYBER_DEFENSE</span><i aria-hidden="true" />
         </a>
         <button
+          ref={menuButtonRef}
           className="menu-toggle"
           type="button"
           aria-expanded={menuOpen}
@@ -299,71 +744,142 @@ export function ThreatPortfolio() {
         >
           {menuOpen ? "Close" : "Menu"}
         </button>
-        <nav id="primary-navigation" className={menuOpen ? "is-open" : ""} aria-label="Primary navigation">
+        <nav
+          id="primary-navigation"
+          className={menuOpen ? "is-open" : ""}
+          aria-label="Primary navigation"
+          inert={compactNavigation && !menuOpen}
+        >
           {navigation.map((item) => (
             <a
               key={item.href}
               href={item.href}
               aria-current={activeSection === item.href.slice(1) ? "location" : undefined}
-              onClick={() => setMenuOpen(false)}
+              onClick={(event) => beginWorldTransit(event, worldLabels[item.href])}
             >
               {item.label}
             </a>
           ))}
+          <div className="mobile-network-links" aria-label="Professional profiles">
+            <a href="https://github.com/sumanshusohal" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+            <a href="https://www.linkedin.com/in/sumanshu-sohal-256981130/" target="_blank" rel="noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
+            <a href="https://try.ka.nz/ai/sumanshusohal" target="_blank" rel="noreferrer">Kanz AI <span aria-hidden="true">↗</span></a>
+          </div>
         </nav>
-        <a className="header-status" href="mailto:sumanshu.95s@outlook.com">
-          <span aria-hidden="true" /> Available for collaboration
-        </a>
+        <div className="header-actions">
+          <a className="header-network" href="https://github.com/sumanshusohal" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+          <a className="header-network" href="https://www.linkedin.com/in/sumanshu-sohal-256981130/" target="_blank" rel="noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
+          <a className="header-network" href="https://try.ka.nz/ai/sumanshusohal" target="_blank" rel="noreferrer">Kanz <span aria-hidden="true">↗</span></a>
+          <a className="header-status" href="mailto:sumanshu.95s@outlook.com">
+            <span aria-hidden="true" /> Available
+          </a>
+        </div>
       </header>
 
-      <main id="main-content">
-        <section className="hero" id="top" aria-labelledby="hero-title">
+      <main id="main-content" data-world={activeSection}>
+        <section className="hero" id="top" aria-labelledby="hero-title" tabIndex={-1}>
           <div className="hero-sticky">
-            <div className={`hero-cinematic-scene ${containmentActive ? "is-purging" : ""}`} aria-hidden="true">
-              <div className="hero-cinematic-plate" />
-              <div className="hero-depth-beam hero-depth-beam-one" />
-              <div className="hero-depth-beam hero-depth-beam-two" />
-              <div className="hero-atmosphere hero-atmosphere-far" />
-              <div className="hero-atmosphere hero-atmosphere-near" />
-              <div className="hero-ice-field" />
-              <div className="hero-chamber-scan" />
-              <div className="hero-warning-glow" />
-              <div className="hero-scene-grade" />
+            <div className="hero-signal-scene" aria-hidden="true">
+              <div className="hero-signal-art" />
+              <video
+                ref={heroVideoRef}
+                className="hero-motion-film"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="none"
+                poster="/media/signal-sieve-poster.png"
+                tabIndex={-1}
+              >
+                <source src="/media/signal-sieve-loop.mp4" type="video/mp4" />
+              </video>
+              <div className="hero-signal-art-mask" />
+              <div className="hero-signal-grid" />
+              <div className="hero-worldline hero-worldline-one" />
+              <div className="hero-worldline hero-worldline-two" />
+              <div className="hero-depth-plane hero-depth-plane-one" />
+              <div className="hero-depth-plane hero-depth-plane-two" />
+              <div className="hero-analysis-aperture"><i /><i /><b /></div>
+              <div className="hero-signal-rails"><i /><i /><i /><i /></div>
+              <div className="hero-live-status"><span /> LIVE SIGNAL FIELD / LAYER 01</div>
+              <div className="hero-field-glow" />
+              <div className="hero-phase-scan" />
             </div>
 
             <div className="hero-copy">
-              <p className="system-kicker"><span aria-hidden="true">CRYO VAULT / </span> SECURITY NODE 07</p>
-              <h1 id="hero-title">Sumanshu Sohal</h1>
-              <p className="hero-role">Cybersecurity Engineer <i aria-hidden="true">/</i> AI Researcher</p>
+              <p className="system-kicker"><span aria-hidden="true">SUMANSHU SOHAL /</span><span>SECURITY ENGINEERING + APPLIED AI</span></p>
+              <h1 id="hero-title">I turn security noise<br /><em>into defensible signal.</em></h1>
+              <p className="hero-role">Sumanshu Sohal <i aria-hidden="true">/</i> Cybersecurity Engineer &amp; AI Researcher</p>
               <p className="hero-summary">
-                <strong>When systems go dark, I find the signal.</strong> Detection engineering, incident response, and applied AI built for high-pressure environments.
+                Six-plus years across Tier 3 SOC operations, enterprise incident response, detection engineering, penetration testing, and applied AI research.
               </p>
               <div className="hero-actions">
-                <a className="button button-primary" href="#systems">Explore systems <span aria-hidden="true">↘</span></a>
+                <a className="button button-primary" href="#systems" onClick={(event) => beginWorldTransit(event, "EVIDENCE SYSTEMS")}>Inspect selected systems <span aria-hidden="true">↘</span></a>
                 <a className="button button-secondary" href="/resume/Sumanshu_Sohal_Resume.pdf" target="_blank" rel="noreferrer">Open résumé <span aria-hidden="true">↗</span></a>
               </div>
-              <button className={`containment-trigger ${containmentActive ? "is-active" : ""}`} type="button" onClick={initiateContainment} disabled={containmentActive}>
-                <span aria-hidden="true" />
-                {containmentActive ? "Containment sequence active" : "Initiate containment sequence"}
-                <b aria-hidden="true">{containmentActive ? "PURGING" : "↗"}</b>
-              </button>
               <div className="hero-credentials" aria-label="Primary areas of expertise">
-                <span>Detection engineering</span><span>Incident response</span><span>AI research</span>
+                <span>Detection engineering</span><span>Incident response</span><span>Security automation</span><span>Applied AI</span>
               </div>
             </div>
 
-            <div className={`cryo-visual ${containmentActive ? "is-purging" : ""}`} aria-hidden="true">
-              <CryoChamber containmentSignal={containmentSignal} />
-              <CryoChamber3D purging={containmentActive} />
-              <div className="cryo-caption cryo-caption-top"><span>CRYO UNIT / CHAMBER 07</span><b>{containmentActive ? "SEALED" : "ISOLATED"}</b></div>
-              <div className="cryo-caption cryo-caption-bottom"><span>{containmentActive ? "PURGE IN PROGRESS" : "LIFE SUPPORT NOMINAL"}</span><b>{containmentActive ? "BREACH / 00" : "CORE / −143°C"}</b></div>
-            </div>
-
-            <a className="scroll-cue" href="#metrics"><span>Descend into the archive</span><i aria-hidden="true" /></a>
+            <a className="scroll-cue" href="#metrics"><span>Start with the operating picture</span><i aria-hidden="true" /></a>
           </div>
         </section>
 
-        <section className="metric-strip" id="metrics" aria-label="Career impact metrics">
+        <section className="career-console-section" aria-labelledby="career-console-title">
+          <div className="career-console-intro">
+            <p className="section-code">00 / CAREER PROVENANCE</p>
+            <h2 id="career-console-title">The artwork becomes<br />inspectable evidence.</h2>
+            <p>Select a career record to trace the dates, responsibilities, and verified outcomes behind the signal archive.</p>
+          </div>
+
+          <div className="evidence-console" data-record={careerRecord}>
+            <div className="evidence-console-header">
+              <div><span>OPERATING PICTURE / 00</span><strong>Career evidence console</strong></div>
+              <p><i aria-hidden="true" /> Verified record</p>
+            </div>
+
+            <div className="evidence-console-body">
+              <div className="career-records" role="tablist" aria-label="Career records">
+                {(Object.keys(careerRecords) as CareerRecord[]).map((key) => (
+                  <button
+                    className={careerRecord === key ? "is-selected" : ""}
+                    type="button"
+                    role="tab"
+                    aria-selected={careerRecord === key}
+                    aria-controls="career-evidence-panel"
+                    onClick={() => setCareerRecord(key)}
+                    key={key}
+                  >
+                    <span>{careerRecords[key].period}</span>
+                    <strong>{careerRecords[key].organization}</strong>
+                  </button>
+                ))}
+              </div>
+
+              <div className="career-evidence" id="career-evidence-panel" role="tabpanel" aria-live="polite">
+                <div className="evidence-lattice" data-record={careerRecord} aria-hidden="true">
+                  <i /><i /><i /><i /><i /><i /><span /><b />
+                </div>
+                <p className="career-evidence-period">{selectedCareer.period}</p>
+                <h2>{selectedCareer.organization} <span>/ {selectedCareer.role}</span></h2>
+                <p className="career-evidence-summary">{selectedCareer.summary}</p>
+                <dl className="career-proof-grid">
+                  {selectedCareer.proof.map(([value, label]) => (
+                    <div key={label}><dt>{value}</dt><dd>{label}</dd></div>
+                  ))}
+                </dl>
+              </div>
+            </div>
+
+            <div className="evidence-console-footer">
+              <span>Evidence before ornament</span><b>FIELD / {careerRecord.toUpperCase()}</b>
+            </div>
+          </div>
+        </section>
+
+        <section className="metric-strip" id="metrics" aria-label="Career impact metrics" tabIndex={-1}>
           {metrics.map((metric, index) => (
             <article key={metric.label}>
               <span className="metric-index">0{index + 1}</span>
@@ -373,7 +889,9 @@ export function ThreatPortfolio() {
           ))}
         </section>
 
-        <section className="content-section experience-section" id="experience" aria-labelledby="experience-title">
+        <WorldTransition {...worldTransitions[0]} />
+
+        <section className="content-section experience-section" id="experience" aria-labelledby="experience-title" tabIndex={-1}>
           <div className="section-intro">
             <p className="section-code">01 / LIVE INTEL</p>
             <h2 id="experience-title">Operational depth,<br />measurable outcomes.</h2>
@@ -398,32 +916,87 @@ export function ThreatPortfolio() {
           </div>
         </section>
 
-        <section className="content-section systems-section" id="systems" aria-labelledby="systems-title">
+        <WorldTransition {...worldTransitions[1]} />
+
+        <section className="content-section systems-section" id="systems" aria-labelledby="systems-title" tabIndex={-1}>
           <div className="section-intro section-intro-wide">
             <div>
               <p className="section-code">02 / CORE SYSTEMS</p>
-              <h2 id="systems-title">Research & deployments.</h2>
+              <h2 id="systems-title">Selected systems,<br />defensible evidence.</h2>
             </div>
-            <p>Selected work at the intersection of defensive engineering, automation, adversary behavior, and regulatory intelligence.</p>
+            <p>Each system connects an operational problem to a concrete security decision, a measurable signal, and a path to inspect the work.</p>
           </div>
 
           <div className="system-grid">
-            {systems.map((system) => (
-              <article className="system-card" key={system.number}>
-                <div className="system-card-top"><span>{system.number}</span><p>{system.eyebrow}</p></div>
-                <div className="signal-graphic" aria-hidden="true"><i /><i /><i /><i /><i /></div>
-                <h3>{system.title}</h3>
-                <p>{system.copy}</p>
-                <ul aria-label="Technologies">{system.tags.map((tag) => <li key={tag}>{tag}</li>)}</ul>
-                <a href={system.action.href} target={system.action.href.startsWith("http") ? "_blank" : undefined} rel={system.action.href.startsWith("http") ? "noreferrer" : undefined}>
-                  {system.action.label} <span aria-hidden="true">↗</span>
-                </a>
+            {systems.map((system) => {
+              const expanded = activeInstrument === system.number;
+              const visual = system.visual as InstrumentName;
+              return (
+              <article
+                className={`system-card ${system.media ? "system-card-featured" : ""} ${expanded ? "is-expanded" : ""}`}
+                key={system.number}
+                onPointerMove={updateCardTilt}
+                onPointerLeave={resetCardTilt}
+              >
+                <div className="system-card-content">
+                  <div className="system-card-top">
+                    <span className="system-number">{system.number}</span>
+                    <p>{system.eyebrow}</p>
+                    <span className="system-status">{system.status}</span>
+                  </div>
+                  <div className={`signal-graphic signal-${system.visual}`} aria-hidden="true">
+                    <i /><i /><i /><i /><i /><i /><span />
+                  </div>
+                  {system.media && (
+                    <div className="system-card-media">
+                      <video controls preload="metadata" playsInline poster="/og-signal-console.png">
+                        <source src={system.media} type="video/mp4" />
+                        <track kind="captions" src="/media/soc-triage-agent-demo.vtt" srcLang="en" label="English" default />
+                        Your browser does not support embedded video.
+                      </video>
+                      <span>Recorded system walkthrough / select play to inspect</span>
+                    </div>
+                  )}
+                  <h3>{system.title}</h3>
+                  <p>{system.copy}</p>
+                  <dl className="system-card-proof">
+                    <div><dt>Result</dt><dd>{system.outcome}</dd></div>
+                    <div><dt>Signal</dt><dd>{system.signal}</dd></div>
+                  </dl>
+                  <ul aria-label="Technologies">{system.tags.map((tag) => <li key={tag}>{tag}</li>)}</ul>
+                  <div className="system-card-actions">
+                    <button
+                      className="instrument-toggle"
+                      type="button"
+                      aria-expanded={expanded}
+                      aria-controls={`instrument-${system.number}`}
+                      onClick={() => setActiveInstrument((active) => active === system.number ? null : system.number)}
+                    >
+                      {expanded ? "Close instrument" : "Inspect system"} <span aria-hidden="true">{expanded ? "−" : "+"}</span>
+                    </button>
+                    <a href={system.action.href} target={system.action.href.startsWith("http") ? "_blank" : undefined} rel={system.action.href.startsWith("http") ? "noreferrer" : undefined}>
+                      {system.action.label} <span aria-hidden="true">↗</span>
+                    </a>
+                  </div>
+                  {expanded && (
+                    <div id={`instrument-${system.number}`}>
+                      <SystemInstrument
+                        visual={visual}
+                        selection={instrumentSelections[visual]}
+                        onSelect={(selection) => setInstrumentSelections((current) => ({ ...current, [visual]: selection }))}
+                      />
+                    </div>
+                  )}
+                </div>
               </article>
-            ))}
+              );
+            })}
           </div>
         </section>
 
-        <section className="content-section research-section" id="research" aria-labelledby="research-title">
+        <WorldTransition {...worldTransitions[2]} />
+
+        <section className="content-section research-section" id="research" aria-labelledby="research-title" tabIndex={-1}>
           <div className="research-copy">
             <p className="section-code">03 / SIGNAL / NOISE</p>
             <h2 id="research-title">Security research should change the way a SOC operates.</h2>
@@ -469,12 +1042,14 @@ export function ThreatPortfolio() {
           <ul>{capabilities.map((capability) => <li key={capability}>{capability}</li>)}</ul>
         </section>
 
-        <section className="contact-section" id="contact" aria-labelledby="contact-title">
+        <WorldTransition {...worldTransitions[3]} />
+
+        <section className="contact-section" id="contact" aria-labelledby="contact-title" tabIndex={-1}>
           <div className="contact-orbit" aria-hidden="true"><i /><i /><i /></div>
           <p className="section-code">05 / SECURE UPLINK</p>
-          <h2 id="contact-title">Let’s build a stronger<br /><em>defense signal.</em></h2>
-          <p>Open to security engineering roles, research collaborations, and technical partnerships.</p>
-          <a className="button button-primary button-large" href="mailto:sumanshu.95s@outlook.com">Establish connection <span aria-hidden="true">↗</span></a>
+          <h2 id="contact-title">Need a clearer<br /><em>defense signal?</em></h2>
+          <p>For security engineering, detection, incident response, cloud security, and applied AI conversations.</p>
+          <a className="button button-primary button-large" href="mailto:sumanshu.95s@outlook.com">Start an email <span aria-hidden="true">↗</span></a>
           <div className="contact-links">
             <a href="https://github.com/sumanshusohal" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
             <a href="https://www.linkedin.com/in/sumanshu-sohal-256981130/" target="_blank" rel="noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
@@ -484,7 +1059,7 @@ export function ThreatPortfolio() {
       </main>
 
       <footer>
-        <a className="wordmark" href="#top" aria-label="Sohal Cyber Defense, back to top"><span aria-hidden="true">SOHAL // CYBER_DEFENSE</span></a>
+        <a className="wordmark" href="#top" aria-label="Sohal Cyber Defense, back to top" onClick={(event) => beginWorldTransit(event, "SIGNAL OBSERVATORY")}><span aria-hidden="true">SOHAL // CYBER_DEFENSE</span></a>
         <p>Cybersecurity engineering · Applied AI · Incident response</p>
         <span>© {new Date().getFullYear()} Sumanshu Sohal</span>
       </footer>

@@ -327,6 +327,8 @@ void main(){ vec2 p = gl_PointCoord - 0.5; float l = length(p); if (l > 0.5) dis
     let scrollTarget = 0;
     let scrollSmooth = 0;
     let scrollCurrent = 0;
+    let tunnelActive = false;
+    let pageVisible = !document.hidden;
 
     function updateScroll() {
       scrollTarget = clamp(scrollY / (document.documentElement.scrollHeight - innerHeight), 0, 1);
@@ -353,6 +355,13 @@ void main(){ vec2 p = gl_PointCoord - 0.5; float l = length(p); if (l > 0.5) dis
         POINTER.active = Boolean(event.data.active);
         if (POINTER.active) POINTER.lastMove = performance.now();
       }
+      if (event.data.type === 'tunnel-active') {
+        tunnelActive = Boolean(event.data.active);
+      }
+    });
+
+    document.addEventListener('visibilitychange', () => {
+      pageVisible = !document.hidden;
     });
 
     function resize() {
@@ -372,6 +381,7 @@ void main(){ vec2 p = gl_PointCoord - 0.5; float l = length(p); if (l > 0.5) dis
 
     function render() {
       requestAnimationFrame(render);
+      if (!tunnelActive || !pageVisible) return;
       scrollSmooth = Lerp(scrollSmooth, scrollTarget, 0.10);
       scrollCurrent = Lerp(scrollCurrent, scrollSmooth, 0.06);
       mouse.x = Lerp(mouse.x, mouseTarget.x, 0.06);

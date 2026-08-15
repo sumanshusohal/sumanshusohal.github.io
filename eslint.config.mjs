@@ -36,6 +36,13 @@ const eslintConfig = defineConfig([
       },
     },
   },
+  {
+    files: ["app/CryoChamber3D.tsx"],
+    rules: {
+      // React Three Fiber uses valid renderer-specific JSX properties.
+      "react/no-unknown-property": "off",
+    },
+  },
 ]);
 
 export default eslintConfig;

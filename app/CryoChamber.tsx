@@ -1,23 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
 type CryoChamberProps = {
   containmentSignal: number;
 };
 
 export function CryoChamber({ containmentSignal }: CryoChamberProps) {
-  const [pulse, setPulse] = useState(false);
-
-  useEffect(() => {
-    if (!containmentSignal) return;
-    setPulse(true);
-    const timer = window.setTimeout(() => setPulse(false), 5200);
-    return () => window.clearTimeout(timer);
-  }, [containmentSignal]);
-
   return (
-    <div className={`cryo-scene ${pulse ? "is-pulsing" : ""}`}>
+    <div
+      key={containmentSignal}
+      className={`cryo-scene ${containmentSignal ? "is-pulsing" : ""}`}
+    >
       <div className="cryo-depth cryo-backplane">
         <div className="vault-light vault-light-left" />
         <div className="vault-light vault-light-right" />

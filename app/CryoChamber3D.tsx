@@ -441,14 +441,19 @@ export function CryoChamber3D({ purging }: CryoChamber3DProps) {
   useEffect(() => {
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
     const update = () => setReducedMotion(media.matches);
-    update();
     media.addEventListener("change", update);
 
-    const testCanvas = document.createElement("canvas");
-    const available = Boolean(testCanvas.getContext("webgl2") || testCanvas.getContext("webgl"));
-    setWebglAvailable(available);
+    const frame = window.requestAnimationFrame(() => {
+      update();
+      const testCanvas = document.createElement("canvas");
+      const available = Boolean(testCanvas.getContext("webgl2") || testCanvas.getContext("webgl"));
+      setWebglAvailable(available);
+    });
 
-    return () => media.removeEventListener("change", update);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      media.removeEventListener("change", update);
+    };
   }, []);
 
   if (!webglAvailable) return null;

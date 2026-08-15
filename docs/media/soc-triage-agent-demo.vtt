@@ -1,0 +1,139 @@
+WEBVTT
+
+00:00:00.400 --> 00:00:02.120
+In the cybersecurity world,
+
+00:00:02.120 --> 00:00:06.000
+a security analyst received thousands of alerts a day.
+
+00:00:06.000 --> 00:00:07.580
+Now, when they investigate,
+
+00:00:07.580 --> 00:00:13.040
+most of them are actually noises and some of them are a real attack.
+
+00:00:13.040 --> 00:00:16.080
+Missing one of those could actually lead to
+
+00:00:16.080 --> 00:00:20.920
+a security incident through a business where there could be a data breach.
+
+00:00:20.920 --> 00:00:24.240
+I created an agent which actually help
+
+00:00:24.240 --> 00:00:29.760
+a security or a human analyst to investigate the alert automatically.
+
+00:00:29.880 --> 00:00:33.120
+Provide a response in a strict structure,
+
+00:00:33.120 --> 00:00:36.320
+evidence, contradiction, any missing information,
+
+00:00:36.320 --> 00:00:39.520
+and what is the recommended step or an action
+
+00:00:39.520 --> 00:00:43.280
+which analysts should perform and confidence.
+
+00:00:43.280 --> 00:00:47.040
+If we wanted to an investigation,
+
+00:00:47.040 --> 00:00:51.080
+we'll select which event we want to investigate,
+
+00:00:51.080 --> 00:00:54.160
+click on it, and do a triage.
+
+00:00:54.160 --> 00:00:59.120
+There's already two of the events which are already triaged.
+
+00:00:59.200 --> 00:01:00.520
+If you look at it,
+
+00:01:00.520 --> 00:01:03.280
+one of the incident where it says credential trip,
+
+00:01:03.280 --> 00:01:08.120
+it investigated and found out that it needs to be escalated as a P1.
+
+00:01:08.120 --> 00:01:10.880
+It will give you all the key evidence,
+
+00:01:10.880 --> 00:01:13.120
+what it did find.
+
+00:01:13.120 --> 00:01:16.780
+It will give you a clear structure of the evidence,
+
+00:01:16.780 --> 00:01:20.760
+the contradiction, anything missing,
+
+00:01:20.760 --> 00:01:22.720
+or the recommended actions.
+
+00:01:22.720 --> 00:01:27.640
+If you go down, it will actually map it to a Miter Attack Framework,
+
+00:01:27.640 --> 00:01:30.800
+which is a industry standard for
+
+00:01:30.800 --> 00:01:34.600
+cybersecurity behavior for the attackers.
+
+00:01:34.600 --> 00:01:42.440
+Then it will give you a score breakdown like why it did score it as 100.
+
+00:01:42.440 --> 00:01:46.920
+It will give you a proper trail of decision,
+
+00:01:46.920 --> 00:01:50.680
+which gives it AI transparency for a human to understand.
+
+00:01:50.680 --> 00:01:53.840
+Along with that, it will give a narrative and
+
+00:01:53.840 --> 00:01:58.960
+a incident ticket draft which analysts can use for a ticketing purpose.
+
+00:01:58.960 --> 00:02:04.560
+Since we are using AI agents everywhere in different department,
+
+00:02:04.560 --> 00:02:08.440
+I also included an option where if it detects an injection,
+
+00:02:08.440 --> 00:02:09.920
+it should block that.
+
+00:02:09.920 --> 00:02:14.880
+As you can see, one of the event had a command where it was trying to instruct
+
+00:02:14.880 --> 00:02:23.800
+the agent to stop treating this event as an attack and put it as a non-suspicious.
+
+00:02:24.120 --> 00:02:26.680
+As you can see, it find the key evidence,
+
+00:02:26.680 --> 00:02:29.920
+but ignored it, it still investigated,
+
+00:02:29.920 --> 00:02:34.080
+mapped it up, and then there's also an option for enrichment,
+
+00:02:34.080 --> 00:02:39.160
+where basically it is enriching from different open source intelligence.
+
+00:02:39.760 --> 00:02:45.840
+This is not an AI making an uncontrollable security decision.
+
+00:02:45.840 --> 00:02:49.480
+The agent investigate and recommends.
+
+00:02:49.480 --> 00:02:53.480
+The human analysts actually control the operational response,
+
+00:02:53.480 --> 00:02:58.720
+so the AI responses, the rule will decide what it needs to be done,
+
+00:02:58.720 --> 00:03:02.200
+and the analyst would act on it. Thank you.
