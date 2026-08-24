@@ -8,48 +8,51 @@ import {
   type PointerEvent as ReactPointerEvent,
 } from "react";
 
+// Tunnel sits behind the hero from the first frame and deepens on scroll.
+// Base is held low enough that hero copy keeps its contrast over the motion.
+const TUNNEL_BASE_OPACITY = 0.72;
+const TUNNEL_MAX_OPACITY = 0.72;
+
 const navigation = [
   { href: "#experience", label: "Experience" },
   { href: "#systems", label: "Systems" },
   { href: "#research", label: "Research" },
-  { href: "#contact", label: "Uplink" },
+  { href: "#contact", label: "Contact" },
 ];
 
 const worldLabels: Record<string, string> = {
-  "#top": "SIGNAL OBSERVATORY",
+  "#top": "OVERVIEW",
   "#metrics": "OPERATING PICTURE",
-  "#experience": "SOC MEMORY",
-  "#systems": "EVIDENCE SYSTEMS",
-  "#research": "RESEARCH LATTICE",
-  "#contact": "SECURE UPLINK",
+  "#experience": "EXPERIENCE",
+  "#systems": "SYSTEMS",
+  "#research": "RESEARCH",
+  "#contact": "CONTACT",
 };
 
 const worldTransitions = [
   {
-    code: "WORLDLINE 01 / PROVENANCE",
+    code: "01 / EXPERIENCE",
     statement: "The signal has a history.",
     trail: "Tier 3 SOC response / penetration testing / malware-execution research / enterprise detection engineering",
-    destination: "SOC MEMORY / 01",
-    fieldLog:
-      "FICTIONAL DESIGN LOG / An imagined alien interface cartographer crossed isolated worlds and translated their signal systems into this human defense archive.",
+    destination: "EXPERIENCE / 01",
   },
   {
-    code: "WORLDLINE 02 / SYNTHESIS",
+    code: "02 / SYSTEMS",
     statement: "Experience compiled into working systems.",
     trail: "Automation / regulatory traceability / EDR visibility / cloud defense",
-    destination: "EVIDENCE SYSTEMS / 02",
+    destination: "SYSTEMS / 02",
   },
   {
-    code: "WORLDLINE 03 / INFERENCE",
+    code: "03 / RESEARCH",
     statement: "Observed gaps become testable questions.",
     trail: "Explainable AI / ATT&CK maturity / measurable SOC outcomes",
-    destination: "RESEARCH LATTICE / 03",
+    destination: "RESEARCH / 03",
   },
   {
-    code: "WORLDLINE 04 / RETURN CHANNEL",
+    code: "04 / CONTACT",
     statement: "The next signal starts with a conversation.",
     trail: "Security engineering / incident response / cloud security / applied AI",
-    destination: "SECURE UPLINK / 05",
+    destination: "CONTACT / 05",
   },
 ];
 
@@ -108,7 +111,11 @@ const systems = [
     eyebrow: "Agentic AI security",
     title: "Autonomous SOC Triage Agent",
     copy: "A bounded, auditable AI agent that triages EDR and SIEM alerts, selects threat-intelligence tools, resists prompt injection in attacker-controlled content, and submits every decision to a deterministic policy engine.",
-    outcome: "0% false negatives on the labeled evaluation set",
+    // Stated as recall rather than "0% false negatives", which reads as naive
+    // or overclaimed to detection engineers (trivially achievable by alerting
+    // on everything). TODO: pair this with the false-positive count or precision
+    // from the same run before deploying, so the tradeoff is visible.
+    outcome: "100% recall on the labeled evaluation set",
     signal: "7 stages / 6-call budget / 4 policy constraints",
     status: "FEATURED ON KANZ AI",
     visual: "triage",
@@ -167,20 +174,11 @@ const systems = [
 ];
 
 const capabilities = [
-  "Helix",
-  "Splunk",
-  "QRadar",
-  "Siemplify",
-  "Trellix HX / NX",
-  "AWS",
-  "Azure",
-  "Python",
-  "KQL",
-  "SQL",
-  "MITRE ATT&CK",
-  "Tenable",
-  "Volatility",
-  "Wireshark",
+  { group: "SIEM & SOAR", items: ["Helix", "Splunk", "QRadar", "Siemplify"] },
+  { group: "Endpoint & Network", items: ["Trellix HX / NX", "Volatility", "Wireshark"] },
+  { group: "Cloud", items: ["AWS", "Azure"] },
+  { group: "Query & Automation", items: ["Python", "KQL", "SQL"] },
+  { group: "Frameworks & Assessment", items: ["MITRE ATT&CK", "Tenable"] },
 ];
 
 const careerRecords = {
@@ -281,18 +279,146 @@ const instrumentLibrary = {
 
 type InstrumentName = keyof typeof instrumentLibrary;
 
+/**
+ * Card schematics. Each one draws the structure that system's own `signal`
+ * field already claims, so nothing here asserts a number the copy doesn't.
+ * Replaces the previous decorative <i/> stack, which encoded nothing.
+ */
+function SystemSchematic({ visual }: { visual: InstrumentName }) {
+  const line = "#74a6b1";
+  const dim = "#2c6571";
+  const cyan = "#8ce8ef";
+  const amber = "#f1a15b";
+  const violet = "#8f7cff";
+
+  if (visual === "triage") {
+    // 7 stages, 6-call budget, 4 policy constraints.
+    const xs = [30, 100, 170, 240, 310, 380, 450];
+    return (
+      <svg viewBox="0 0 480 100" role="img" aria-label="Seven bounded stages with a six-call tool budget and four policy constraints">
+        <line x1="30" y1="34" x2="450" y2="34" stroke={dim} strokeWidth="1" />
+        {xs.map((x, i) => (
+          <circle
+            key={x}
+            cx={x}
+            cy="34"
+            r={i === 4 || i === 5 ? 7 : 5}
+            fill={i === 4 ? amber : i === 5 ? violet : "#010305"}
+            stroke={i === 4 ? amber : i === 5 ? violet : line}
+            strokeWidth="1.5"
+          />
+        ))}
+        <text x="30" y="62" fill="#7d8a8f" fontSize="10" letterSpacing="1">INGEST</text>
+        <text x="288" y="62" fill={amber} fontSize="10" letterSpacing="1">INJECTION</text>
+        <text x="358" y="62" fill={violet} fontSize="10" letterSpacing="1">POLICY</text>
+        <g transform="translate(30,78)">
+          {[0, 1, 2, 3, 4, 5].map(i => (
+            <rect key={i} x={i * 16} y="0" width="10" height="4" fill={i < 3 ? amber : "#3a2b1a"} />
+          ))}
+          <text x="112" y="5" fill="#7d8a8f" fontSize="10" letterSpacing="1">6-CALL BUDGET</text>
+        </g>
+      </svg>
+    );
+  }
+
+  if (visual === "mapping") {
+    // Evidence -> obligation -> control traceability.
+    const cols = [60, 240, 420];
+    return (
+      <svg viewBox="0 0 480 100" role="img" aria-label="Evidence mapped through obligations to controls">
+        {[0, 1, 2].map(c =>
+          [22, 50, 78].map(y => (
+            <circle key={`${c}-${y}`} cx={cols[c]} cy={y} r="5" fill="#010305" stroke={c === 1 ? cyan : line} strokeWidth="1.5" />
+          )),
+        )}
+        {[22, 50, 78].map(y1 =>
+          [22, 50, 78].map(y2 => (
+            <line key={`a${y1}-${y2}`} x1="65" y1={y1} x2="235" y2={y2} stroke={dim} strokeWidth="0.6" opacity="0.55" />
+          )),
+        )}
+        {[22, 50, 78].map(y1 =>
+          [22, 50, 78].map(y2 => (
+            <line key={`b${y1}-${y2}`} x1="245" y1={y1} x2="415" y2={y2} stroke={dim} strokeWidth="0.6" opacity="0.55" />
+          )),
+        )}
+        <text x="34" y="98" fill="#7d8a8f" fontSize="10" letterSpacing="1">EVIDENCE</text>
+        <text x="206" y="98" fill={cyan} fontSize="10" letterSpacing="1">OBLIGATION</text>
+        <text x="392" y="98" fill="#7d8a8f" fontSize="10" letterSpacing="1">CONTROL</text>
+      </svg>
+    );
+  }
+
+  if (visual === "cloud") {
+    // Defence in depth: the four layers the signal names.
+    const layers = ["IDENTITY", "NETWORK", "LOGGING", "BASELINE"];
+    return (
+      <svg viewBox="0 0 480 100" role="img" aria-label="Four defence-in-depth layers: identity, network, logging, baseline">
+        {layers.map((label, i) => (
+          <g key={label}>
+            <rect x={20 + i * 12} y={14 + i * 19} width={440 - i * 24} height="15" fill="none" stroke={i === 0 ? cyan : line} strokeWidth="1.2" opacity={1 - i * 0.16} />
+            <text x={30 + i * 12} y={25 + i * 19} fill={i === 0 ? cyan : "#7d8a8f"} fontSize="10" letterSpacing="1.4">{label}</text>
+          </g>
+        ))}
+      </svg>
+    );
+  }
+
+  if (visual === "endpoint") {
+    // Repetitive manual checks collapsing into one automated pass.
+    return (
+      <svg viewBox="0 0 480 100" role="img" aria-label="Repetitive manual endpoint checks collapsed into one automated pass">
+        {[0, 1, 2, 3, 4, 5].map(i => (
+          <g key={i}>
+            <rect x="24" y={10 + i * 14} width="150" height="8" fill="none" stroke={line} strokeWidth="1" opacity="0.75" />
+            <line x1="180" y1={14 + i * 14} x2="250" y2="50" stroke={dim} strokeWidth="0.7" />
+          </g>
+        ))}
+        <rect x="258" y="40" width="196" height="20" fill="none" stroke={cyan} strokeWidth="1.5" />
+        <text x="270" y="54" fill={cyan} fontSize="10" letterSpacing="1.4">AUTOMATED PASS</text>
+        <text x="24" y="96" fill="#7d8a8f" fontSize="10" letterSpacing="1">MANUAL CHECKLIST STEPS</text>
+      </svg>
+    );
+  }
+
+  // trace: behavioural blind spots turned into observable test cases.
+  const observed = [0, 1, 3, 4, 6, 7, 9, 11, 12, 14];
+  return (
+    <svg viewBox="0 0 480 100" role="img" aria-label="Behavioural blind spots converted into observable test cases">
+      {Array.from({ length: 15 }).map((_, i) => {
+        const seen = observed.includes(i);
+        return (
+          <rect
+            key={i}
+            x={24 + i * 30}
+            y="22"
+            width="22"
+            height="30"
+            fill={seen ? "#12414d" : "none"}
+            stroke={seen ? cyan : line}
+            strokeDasharray={seen ? undefined : "2 2"}
+            strokeWidth="1.2"
+          />
+        );
+      })}
+      {/* Legend carries its own swatches so the encoding is self-explanatory. */}
+      <rect x="24" y="70" width="12" height="12" fill="#12414d" stroke={cyan} strokeWidth="1.2" />
+      <text x="42" y="80" fill={cyan} fontSize="10" letterSpacing="1">OBSERVABLE</text>
+      <rect x="150" y="70" width="12" height="12" fill="none" stroke={line} strokeDasharray="2 2" strokeWidth="1.2" />
+      <text x="168" y="80" fill="#7d8a8f" fontSize="10" letterSpacing="1">BLIND SPOT UNDER TEST</text>
+    </svg>
+  );
+}
+
 function WorldTransition({
   code,
   statement,
   trail,
   destination,
-  fieldLog,
 }: {
   code: string;
   statement: string;
   trail: string;
   destination: string;
-  fieldLog?: string;
 }) {
   return (
     <div className="world-transition">
@@ -300,7 +426,6 @@ function WorldTransition({
         <span className="world-transition-code">{code}</span>
         <strong>{statement}</strong>
         <small>{trail}</small>
-        {fieldLog && <p>{fieldLog}</p>}
       </div>
       <div className="world-gate" aria-hidden="true">
         <i /><i /><i /><b />
@@ -356,7 +481,6 @@ function SystemInstrument({
 
 export function ThreatPortfolio() {
   const tunnelFrameRef = useRef<HTMLIFrameElement>(null);
-  const heroVideoRef = useRef<HTMLVideoElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const transitTimersRef = useRef<number[]>([]);
   const transitFrameRef = useRef<number>(0);
@@ -418,7 +542,7 @@ export function ThreatPortfolio() {
     const target = document.querySelector<HTMLElement>(href);
     if (!target) return;
 
-    const label = destinationLabel ?? worldLabels[href] ?? "NEXT WORLD";
+    const label = destinationLabel ?? worldLabels[href] ?? "NEXT SECTION";
     const keyboardActivation = event.detail === 0;
     const shouldFocusTarget = keyboardActivation || (compactNavigation && Boolean(event.currentTarget.closest("#primary-navigation")));
     const reducedMotion = motionSuppressed;
@@ -518,17 +642,6 @@ export function ThreatPortfolio() {
   }, [motionPaused, motionSuppressed, activeSection]);
 
   useEffect(() => {
-    const video = heroVideoRef.current;
-    if (!video) return;
-    if (motionSuppressed) {
-      video.pause();
-      return;
-    }
-    const playback = video.play();
-    if (playback) void playback.catch(() => undefined);
-  }, [motionSuppressed]);
-
-  useEffect(() => {
     let frame = 0;
     let pointerFrame = 0;
     let latestPointer: PointerEvent | null = null;
@@ -546,13 +659,15 @@ export function ThreatPortfolio() {
       root.style.setProperty("--shift-fast", `${y * -0.15}px`);
       root.style.setProperty("--page-progress", `${progress}`);
       root.style.setProperty("--hero-progress", `${heroProgress}`);
-      root.style.setProperty("--tunnel-opacity", `${Math.min(Math.max((heroProgress - 0.68) / 0.32, 0), 1) * 0.72}`);
+      // The tunnel is the hero backdrop, so it is visible from the first frame
+      // and deepens as you scroll rather than switching on partway down.
+      root.style.setProperty("--tunnel-opacity", `${(TUNNEL_BASE_OPACITY + heroProgress * (TUNNEL_MAX_OPACITY - TUNNEL_BASE_OPACITY)).toFixed(3)}`);
       tunnelFrameRef.current?.contentWindow?.postMessage(
         { type: "tunnel-scroll", progress },
         window.location.origin,
       );
       tunnelFrameRef.current?.contentWindow?.postMessage(
-        { type: "tunnel-active", active: !motionSuppressed && heroProgress > 0.62 },
+        { type: "tunnel-active", active: !motionSuppressed },
         window.location.origin,
       );
       frame = 0;
@@ -685,7 +800,7 @@ export function ThreatPortfolio() {
         aria-hidden="true"
       >
         <div className="transit-iris"><i /><i /><i /><b /></div>
-        <p><span>INTERWORLD TRANSIT</span><strong>{transitLabel}</strong></p>
+        <p><span>NAVIGATING TO</span><strong>{transitLabel}</strong></p>
       </div>
       <p className="sr-only" role="status" aria-live="polite">{transitMessage}</p>
       <div className="scroll-progress" aria-hidden="true"><span /></div>
@@ -712,12 +827,16 @@ export function ThreatPortfolio() {
             const hero = document.getElementById("top");
             const heroTravel = Math.max((hero?.offsetHeight ?? window.innerHeight) - window.innerHeight, 1);
             const heroProgress = Math.min(Math.max(window.scrollY / heroTravel, 0), 1);
+            document.documentElement.style.setProperty(
+              "--tunnel-opacity",
+              `${(TUNNEL_BASE_OPACITY + heroProgress * (TUNNEL_MAX_OPACITY - TUNNEL_BASE_OPACITY)).toFixed(3)}`,
+            );
             event.currentTarget.contentWindow?.postMessage(
               { type: "tunnel-scroll", progress: Math.min(window.scrollY / pageHeight, 1) },
               window.location.origin,
             );
             event.currentTarget.contentWindow?.postMessage(
-              { type: "tunnel-active", active: !motionSuppressed && heroProgress > 0.62 },
+              { type: "tunnel-active", active: !motionSuppressed },
               window.location.origin,
             );
           }}
@@ -779,38 +898,13 @@ export function ThreatPortfolio() {
       <main id="main-content" data-world={activeSection}>
         <section className="hero" id="top" aria-labelledby="hero-title" tabIndex={-1}>
           <div className="hero-sticky">
-            <div className="hero-signal-scene" aria-hidden="true">
-              <div className="hero-signal-art" />
-              <video
-                ref={heroVideoRef}
-                className="hero-motion-film"
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="none"
-                poster="/media/signal-sieve-poster.png"
-                tabIndex={-1}
-              >
-                <source src="/media/signal-sieve-loop.mp4" type="video/mp4" />
-              </video>
-              <div className="hero-signal-art-mask" />
-              <div className="hero-signal-grid" />
-              <div className="hero-worldline hero-worldline-one" />
-              <div className="hero-worldline hero-worldline-two" />
-              <div className="hero-depth-plane hero-depth-plane-one" />
-              <div className="hero-depth-plane hero-depth-plane-two" />
-              <div className="hero-analysis-aperture"><i /><i /><b /></div>
-              <div className="hero-signal-rails"><i /><i /><i /><i /></div>
-              <div className="hero-live-status"><span /> LIVE SIGNAL FIELD / LAYER 01</div>
-              <div className="hero-field-glow" />
-              <div className="hero-phase-scan" />
-            </div>
+            {/* The tunnel itself is the hero art now. This is only the scrim
+                that keeps type legible over it. */}
+            <div className="hero-veil" aria-hidden="true" />
 
             <div className="hero-copy">
               <p className="system-kicker"><span aria-hidden="true">SUMANSHU SOHAL /</span><span>SECURITY ENGINEERING + APPLIED AI</span></p>
               <h1 id="hero-title">I turn security noise<br /><em>into defensible signal.</em></h1>
-              <p className="hero-role">Sumanshu Sohal <i aria-hidden="true">/</i> Cybersecurity Engineer &amp; AI Researcher</p>
               <p className="hero-summary">
                 Six-plus years across Tier 3 SOC operations, enterprise incident response, detection engineering, penetration testing, and applied AI research.
               </p>
@@ -818,10 +912,16 @@ export function ThreatPortfolio() {
                 <a className="button button-primary" href="#systems" onClick={(event) => beginWorldTransit(event, "EVIDENCE SYSTEMS")}>Inspect selected systems <span aria-hidden="true">↘</span></a>
                 <a className="button button-secondary" href="/resume/Sumanshu_Sohal_Resume.pdf" target="_blank" rel="noreferrer">Open résumé <span aria-hidden="true">↗</span></a>
               </div>
-              <div className="hero-credentials" aria-label="Primary areas of expertise">
-                <span>Detection engineering</span><span>Incident response</span><span>Security automation</span><span>Applied AI</span>
-              </div>
             </div>
+
+            <dl className="hero-proof" aria-label="Career impact metrics">
+              {metrics.map(metric => (
+                <div key={metric.label}>
+                  <dt>{metric.value}</dt>
+                  <dd>{metric.label}</dd>
+                </div>
+              ))}
+            </dl>
 
             <a className="scroll-cue" href="#metrics"><span>Start with the operating picture</span><i aria-hidden="true" /></a>
           </div>
@@ -944,8 +1044,8 @@ export function ThreatPortfolio() {
                     <p>{system.eyebrow}</p>
                     <span className="system-status">{system.status}</span>
                   </div>
-                  <div className={`signal-graphic signal-${system.visual}`} aria-hidden="true">
-                    <i /><i /><i /><i /><i /><i /><span />
+                  <div className={`signal-graphic signal-${system.visual}`}>
+                    <SystemSchematic visual={visual} />
                   </div>
                   {system.media && (
                     <div className="system-card-media">
@@ -1019,7 +1119,7 @@ export function ThreatPortfolio() {
               aria-controls="research-dossier"
               onClick={() => setIntelOpen((open) => !open)}
             >
-              <span><i aria-hidden="true" /> {intelOpen ? "Lock research dossier" : "Decrypt research dossier"}</span>
+              <span><i aria-hidden="true" /> {intelOpen ? "Hide research detail" : "Show research detail"}</span>
               <b aria-hidden="true">{intelOpen ? "−" : "+"}</b>
             </button>
             {intelOpen && (
@@ -1038,15 +1138,22 @@ export function ThreatPortfolio() {
         </section>
 
         <section className="capability-band" aria-labelledby="capabilities-title">
-          <div><p className="section-code">04 / SYSTEM INVENTORY</p><h2 id="capabilities-title">Capabilities</h2></div>
-          <ul>{capabilities.map((capability) => <li key={capability}>{capability}</li>)}</ul>
+          <div><p className="section-code">04 / CAPABILITIES</p><h2 id="capabilities-title">Capabilities</h2></div>
+          <div className="capability-groups">
+            {capabilities.map(({ group, items }) => (
+              <div className="capability-group" key={group}>
+                <h3>{group}</h3>
+                <ul>{items.map((capability) => <li key={capability}>{capability}</li>)}</ul>
+              </div>
+            ))}
+          </div>
         </section>
 
         <WorldTransition {...worldTransitions[3]} />
 
         <section className="contact-section" id="contact" aria-labelledby="contact-title" tabIndex={-1}>
           <div className="contact-orbit" aria-hidden="true"><i /><i /><i /></div>
-          <p className="section-code">05 / SECURE UPLINK</p>
+          <p className="section-code">05 / CONTACT</p>
           <h2 id="contact-title">Need a clearer<br /><em>defense signal?</em></h2>
           <p>For security engineering, detection, incident response, cloud security, and applied AI conversations.</p>
           <a className="button button-primary button-large" href="mailto:sumanshu.95s@outlook.com">Start an email <span aria-hidden="true">↗</span></a>
