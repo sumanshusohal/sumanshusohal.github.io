@@ -1272,42 +1272,9 @@ main [tabindex="-1"]:focus {
 }
 
 /* Evidence in the first screen, without repeating anything the copy says. */
-.hero-proof {
-  position: relative;
-  z-index: 5;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1px;
-  width: 100%;
-  max-width: 60rem;
-  margin: 0;
-  padding-top: 2.5rem;
-  border-top: 1px solid var(--line);
-}
 
-.hero-proof > div {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  align-items: center;
-}
 
-.hero-proof dt {
-  color: var(--text);
-  font-size: clamp(1.6rem, 2.1vw, 2.3rem);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  line-height: 1;
-}
 
-.hero-proof dd {
-  margin: 0;
-  color: var(--muted);
-  font-family: var(--mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
 
 .system-kicker,
 .section-code {
@@ -3774,6 +3741,21 @@ footer {
   margin-top: 0.5rem;
 }
 
+/* Recruiters filter hard on status; stating it here saves rounds of
+   conversations that were never going to convert. */
+.contact-authorization {
+  max-width: 34rem;
+  margin: 2.5rem auto 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+  color: var(--faint);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  line-height: 1.7;
+  text-transform: uppercase;
+}
+
 .contact-links {
   position: relative;
   z-index: 1;
@@ -3990,11 +3972,6 @@ footer > span {
     transform: none;
   }
 
-  .hero-proof {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.75rem 1rem;
-    padding-top: 2rem;
-  }
 
   .hero-cinematic-plate {
     inset: -3% -34% -3% -8%;

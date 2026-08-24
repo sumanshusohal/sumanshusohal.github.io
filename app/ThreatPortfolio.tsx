@@ -308,14 +308,14 @@ function SystemSchematic({ visual }: { visual: InstrumentName }) {
             strokeWidth="1.5"
           />
         ))}
-        <text x="30" y="62" fill="#7d8a8f" fontSize="10" letterSpacing="1">INGEST</text>
-        <text x="288" y="62" fill={amber} fontSize="10" letterSpacing="1">INJECTION</text>
-        <text x="358" y="62" fill={violet} fontSize="10" letterSpacing="1">POLICY</text>
+        <text x="30" y="62" fill="#7d8a8f" fontSize="14" letterSpacing="1">INGEST</text>
+        <text x="310" y="62" fill={amber} fontSize="14" letterSpacing="1" textAnchor="middle">INJECT</text>
+        <text x="380" y="62" fill={violet} fontSize="14" letterSpacing="1" textAnchor="middle">POLICY</text>
         <g transform="translate(30,78)">
           {[0, 1, 2, 3, 4, 5].map(i => (
             <rect key={i} x={i * 16} y="0" width="10" height="4" fill={i < 3 ? amber : "#3a2b1a"} />
           ))}
-          <text x="112" y="5" fill="#7d8a8f" fontSize="10" letterSpacing="1">6-CALL BUDGET</text>
+          <text x="112" y="5" fill="#7d8a8f" fontSize="14" letterSpacing="1">6-CALL BUDGET</text>
         </g>
       </svg>
     );
@@ -341,9 +341,9 @@ function SystemSchematic({ visual }: { visual: InstrumentName }) {
             <line key={`b${y1}-${y2}`} x1="245" y1={y1} x2="415" y2={y2} stroke={dim} strokeWidth="0.6" opacity="0.55" />
           )),
         )}
-        <text x="34" y="98" fill="#7d8a8f" fontSize="10" letterSpacing="1">EVIDENCE</text>
-        <text x="206" y="98" fill={cyan} fontSize="10" letterSpacing="1">OBLIGATION</text>
-        <text x="392" y="98" fill="#7d8a8f" fontSize="10" letterSpacing="1">CONTROL</text>
+        <text x="34" y="98" fill="#7d8a8f" fontSize="14" letterSpacing="1">EVIDENCE</text>
+        <text x="206" y="98" fill={cyan} fontSize="14" letterSpacing="1">OBLIGATION</text>
+        <text x="392" y="98" fill="#7d8a8f" fontSize="14" letterSpacing="1">CONTROL</text>
       </svg>
     );
   }
@@ -356,7 +356,7 @@ function SystemSchematic({ visual }: { visual: InstrumentName }) {
         {layers.map((label, i) => (
           <g key={label}>
             <rect x={20 + i * 12} y={14 + i * 19} width={440 - i * 24} height="15" fill="none" stroke={i === 0 ? cyan : line} strokeWidth="1.2" opacity={1 - i * 0.16} />
-            <text x={30 + i * 12} y={25 + i * 19} fill={i === 0 ? cyan : "#7d8a8f"} fontSize="10" letterSpacing="1.4">{label}</text>
+            <text x={30 + i * 12} y={25 + i * 19} fill={i === 0 ? cyan : "#7d8a8f"} fontSize="14" letterSpacing="1.4">{label}</text>
           </g>
         ))}
       </svg>
@@ -374,8 +374,8 @@ function SystemSchematic({ visual }: { visual: InstrumentName }) {
           </g>
         ))}
         <rect x="258" y="40" width="196" height="20" fill="none" stroke={cyan} strokeWidth="1.5" />
-        <text x="270" y="54" fill={cyan} fontSize="10" letterSpacing="1.4">AUTOMATED PASS</text>
-        <text x="24" y="96" fill="#7d8a8f" fontSize="10" letterSpacing="1">MANUAL CHECKLIST STEPS</text>
+        <text x="270" y="54" fill={cyan} fontSize="14" letterSpacing="1.4">AUTOMATED PASS</text>
+        <text x="24" y="96" fill="#7d8a8f" fontSize="14" letterSpacing="1">MANUAL CHECKLIST STEPS</text>
       </svg>
     );
   }
@@ -402,9 +402,9 @@ function SystemSchematic({ visual }: { visual: InstrumentName }) {
       })}
       {/* Legend carries its own swatches so the encoding is self-explanatory. */}
       <rect x="24" y="70" width="12" height="12" fill="#12414d" stroke={cyan} strokeWidth="1.2" />
-      <text x="42" y="80" fill={cyan} fontSize="10" letterSpacing="1">OBSERVABLE</text>
+      <text x="42" y="80" fill={cyan} fontSize="14" letterSpacing="1">OBSERVABLE</text>
       <rect x="150" y="70" width="12" height="12" fill="none" stroke={line} strokeDasharray="2 2" strokeWidth="1.2" />
-      <text x="168" y="80" fill="#7d8a8f" fontSize="10" letterSpacing="1">BLIND SPOT UNDER TEST</text>
+      <text x="168" y="80" fill="#7d8a8f" fontSize="14" letterSpacing="1">BLIND SPOT UNDER TEST</text>
     </svg>
   );
 }
@@ -914,15 +914,6 @@ export function ThreatPortfolio() {
               </div>
             </div>
 
-            <dl className="hero-proof" aria-label="Career impact metrics">
-              {metrics.map(metric => (
-                <div key={metric.label}>
-                  <dt>{metric.value}</dt>
-                  <dd>{metric.label}</dd>
-                </div>
-              ))}
-            </dl>
-
             <a className="scroll-cue" href="#metrics"><span>Start with the operating picture</span><i aria-hidden="true" /></a>
           </div>
         </section>
@@ -1162,6 +1153,9 @@ export function ThreatPortfolio() {
             <a href="https://www.linkedin.com/in/sumanshu-sohal-256981130/" target="_blank" rel="noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
             <a href="/resume/Sumanshu_Sohal_Resume.pdf" target="_blank" rel="noreferrer">Résumé <span aria-hidden="true">↗</span></a>
           </div>
+          <p className="contact-authorization">
+            Authorized to work in the US on F-1 CPT and available to start immediately. Will require H-1B sponsorship for continued employment.
+          </p>
         </section>
       </main>
 
